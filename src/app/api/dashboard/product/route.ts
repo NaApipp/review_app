@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/app/lib/mongodb";
+export const runtime = "nodejs";
 
 interface Counter {
   _id: string;
@@ -30,33 +31,27 @@ function formatDateWIB(date: Date) {
 
 
 
-// Function to get the next product_id using a counters collection
+
 async function getNextProductId(): Promise<number> {
   const client = await clientPromise;
   const db = client.db("review_app");
-
   const counters = db.collection<Counter>("counters");
 
-  const result = await counters.findOneAndUpdate(
+  // Upsert + increment
+  await counters.updateOne(
     { _id: "product" },
-    { $inc: { seq: 1 } },
-    { upsert: true, returnDocument: "after" }
+    { $inc: { seq: 1 }, $setOnInsert: { seq: 0 } },
+    { upsert: true }
   );
 
-  if (result.value) {
-    return result.value.seq;
+  // Ambil dokumen terbaru secara manual
+  const doc = await counters.findOne({ _id: "product" });
+  if (!doc || typeof doc.seq !== "number") {
+    throw new Error("Counter document not found or seq invalid");
   }
 
-  // fallback jika value null (upsert pertama)
-  const counter = await counters.findOne({ _id: "product" });
-
-  if (!counter) {
-    throw new Error("Counter document not found after upsert");
-  }
-
-  return counter.seq;
+  return doc.seq;
 }
-
 
 
 
