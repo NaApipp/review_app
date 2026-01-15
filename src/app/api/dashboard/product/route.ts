@@ -32,43 +32,56 @@ function formatDateWIB(date: Date) {
 
 
 
-async function getNextProductId(): Promise<number> {
-  const client = await clientPromise;
-  const db = client.db("review_app");
-  const counters = db.collection<Counter>("counters");
+// async function getNextProductId(): Promise<number> {
+//   const client = await clientPromise;
+//   const db = client.db("review_app");
+//   const counters = db.collection<Counter>("counters");
 
-  // Upsert + increment
-  await counters.updateOne(
-    { _id: "product" },
-    { $inc: { seq: 1 }, $setOnInsert: { seq: 0 } },
-    { upsert: true }
-  );
+//   // Upsert + increment
+//   await counters.updateOne(
+//     { _id: "product" },
+//     { $inc: { seq: 1 }, $setOnInsert: { seq: 0 } },
+//     { upsert: true }
+//   );
 
-  // Ambil dokumen terbaru secara manual
-  const doc = await counters.findOne({ _id: "product" });
-  if (!doc || typeof doc.seq !== "number") {
-    throw new Error("Counter document not found or seq invalid");
-  }
+//   // Ambil dokumen terbaru secara manual
+//   const doc = await counters.findOne({ _id: "product" });
+//   if (!doc || typeof doc.seq !== "number") {
+//     throw new Error("Counter document not found or seq invalid");
+//   }
 
-  return doc.seq;
-}
+//   return doc.seq;
+// }
 
 
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { platform, produkName, linkProduk, price, imageUrl, createdAt } = body;
+    const { platform, kodeProduk, produkName, linkProduk, price, imageUrl, createdAt } = body;
 
     const client = await clientPromise;
     const db = client.db("review_app");
     const collection = db.collection("product");
 
-    const productId = await getNextProductId();
+    // Cek duplikasi kodeProduk
+    const existing = await collection.findOne({ productId: kodeProduk.trim() });
+    if (existing) {
+      return NextResponse.json(
+        {
+          errorCode: "DUPLICATE_KODE",
+          message: `Kode produk "${kodeProduk.trim()}" sudah ada`,
+        },
+        { status: 409 } // Conflict
+      );
+    }
+
+    
+    // const productId = await getNextProductId();
     const formattedDate = formatDateWIB(new Date());
     
     const result = await collection.insertOne({
-      productId: productId,
+      productId: kodeProduk.trim()  ,
       platform: platform.trim(),
       produkName: produkName.trim(),
       linkProduk: linkProduk.trim(),
@@ -80,8 +93,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: true,
-        id: result.insertedId,
-        productId: productId,
+        id: result.insertedId
       },
       { status: 200 }
     );
