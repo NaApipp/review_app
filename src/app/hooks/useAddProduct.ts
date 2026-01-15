@@ -4,6 +4,9 @@ export function useAddProduct() {
   // PLATFORM
   const [platform, setPlatform] = useState("");
 
+  // PLATFORM
+  const [kodeProduk, setKodeProduk] = useState("");
+
   //   NAME
   const [produkName, setProdukName] = useState("");
 
@@ -38,6 +41,7 @@ export function useAddProduct() {
 
     try {
       const trimmedPlatform = platform.trim();
+      const trimmedKodeProduk = kodeProduk.trim();
       const trimmedProdukName = produkName.trim();
       const trimmedLinkProduct = linkProduk.trim();
       const trimmedPrice = price.trim();
@@ -51,24 +55,31 @@ export function useAddProduct() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           platform: trimmedPlatform,
+          kodeProduk: trimmedKodeProduk,
           produkName: trimmedProdukName,
           linkProduk: trimmedLinkProduct,
           price: trimmedPrice,
           imageUrl: trimmedImageUrl,
         }),
       });
-
       const data = await res.json();
-
       if (!res.ok) {
         setStatusType("error");
-        setStatus(data.error || "Terjadi kesalahan");
+
+        if (res.status === 409) {
+          // kodeProduk sudah ada
+          setStatus(data.message || "Kode produk sudah ada");
+        } else {
+          setStatus(data.message || "Terjadi kesalahan");
+        }
+
         return;
       }
 
       setStatusType("success");
       setStatus(`Schedule berhasil ditambahkan dengan ID: ${data.id}`);
       setPlatform("");
+      setKodeProduk("");
       setProdukName("");
       setLinkProduk("");
       setPrice("");
@@ -87,6 +98,8 @@ export function useAddProduct() {
   return {
     platform,
     setPlatform,
+    kodeProduk,
+    setKodeProduk,
     produkName,
     setProdukName,
     linkProduk,
