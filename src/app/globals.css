@@ -1,8 +1,31 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+@layer components {
+  /* add Product */
+  .form-add-product {
+    @apply  rounded-2xl p-5 flex flex-col gap-4 w-96 bg-white
+  }
+  .label-field-product {
+    @apply font-medium text-black
+  }
+  .container-field-product {
+    @apply flex flex-col gap-[7px]
+  }
+  .field-input-product {
+    @apply border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500  text-black placeholder:text-gray-400
+  }
+  .btn-submit-product {
+    @apply bg-blue-500 text-white cursor-pointer font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors
+  }
+  .data-list-product {
+    @apply text-black
+  }
 }
 
 @theme inline {
