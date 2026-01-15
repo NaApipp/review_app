@@ -6,6 +6,8 @@ export default function AddProductPage() {
   const {
     platform,
     setPlatform,
+    kodeProduk,
+    setKodeProduk,
     produkName,
     setProdukName,
     linkProduk,
@@ -15,15 +17,35 @@ export default function AddProductPage() {
     imageUrl,
     setImageUrl,
     isSubmitting,
+    status,
+    statusType,
     handleSubmit,
   } = useAddProduct();
 
   return (
     <>
       <form onSubmit={handleSubmit} className="form-add-product">
+        {/* Kode Product */}
+        <div className="container-field-product">
+          <label htmlFor="product_name" className="label-field-product">
+            ID Produk{""}
+          </label>
+          <input
+            type="text"
+            className="field-input-product"
+            name="product_name"
+            id="product_name"
+            value={kodeProduk}
+            placeholder="KODE-01"
+            onChange={(e) => setKodeProduk(e.target.value)}
+          />
+        </div>
+
         {/* Platform */}
         <div className="container-field-product" id="platform">
-          <label htmlFor="platform" className="label-field-product">Platform</label>
+          <label htmlFor="platform" className="label-field-product">
+            Platform
+          </label>
           <select
             className="field-input-product"
             name="platform"
@@ -31,7 +53,9 @@ export default function AddProductPage() {
             value={platform}
             onChange={(e) => setPlatform(e.target.value)}
           >
-            <option value="" disabled>-- Pilih Platform --</option>
+            <option value="" disabled>
+              -- Pilih Platform --
+            </option>
             <option value="shopee">Shopee</option>
             <option value="tokopedia">Tokopedia</option>
             <option value="lazada">Lazada</option>
@@ -41,7 +65,9 @@ export default function AddProductPage() {
 
         {/* Nama Product */}
         <div className="container-field-product">
-          <label htmlFor="product_name" className="label-field-product">Nama Produk{""}</label>
+          <label htmlFor="product_name" className="label-field-product">
+            Nama Produk{""}
+          </label>
           <input
             type="text"
             className="field-input-product"
@@ -55,7 +81,9 @@ export default function AddProductPage() {
 
         {/* Url Produk  */}
         <div className="container-field-product" id="product_name">
-          <label htmlFor="product_name" className="label-field-product">Link Produk</label>
+          <label htmlFor="product_name" className="label-field-product">
+            Link Produk
+          </label>
           <input
             className="field-input-product"
             type="text"
@@ -69,7 +97,9 @@ export default function AddProductPage() {
 
         {/* Price  */}
         <div className="container-field-product" id="price">
-          <label htmlFor="price" className="label-field-product">Harga</label>
+          <label htmlFor="price" className="label-field-product">
+            Harga
+          </label>
           <input
             className="field-input-product"
             type="number"
@@ -83,7 +113,9 @@ export default function AddProductPage() {
 
         {/* Url Image  */}
         <div className="container-field-product" id="image_url">
-          <label htmlFor="image_url" className="label-field-product">Url Image</label>
+          <label htmlFor="image_url" className="label-field-product">
+            Url Image
+          </label>
           <input
             className="field-input-product"
             type="text"
@@ -94,9 +126,18 @@ export default function AddProductPage() {
             onChange={(e) => setImageUrl(e.target.value)}
           />
         </div>
-        <button className="btn-submit-product" type="submit" disabled={isSubmitting}>
-            Submit
+        <button
+          className="btn-submit-product"
+          type="submit"
+          disabled={isSubmitting}
+        >
+          Submit
         </button>
+        {status && (
+          <p style={{ color: statusType === "error" ? "red" : "green" }}>
+            {status}
+          </p>
+        )}
       </form>
     </>
   );
