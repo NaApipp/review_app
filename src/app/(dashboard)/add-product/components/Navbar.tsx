@@ -65,7 +65,7 @@ export default function Navbar() {
           ">
             <li>
               <Link
-                href="/dashboard"
+                href="/login-admin"
                 onClick={logout}
                 className="block py-2 px-3 bg-red-400 text-heading rounded hover:bg-neutral-tertiary  md:p-3"
               >
