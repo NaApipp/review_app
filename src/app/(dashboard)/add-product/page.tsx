@@ -1,23 +1,28 @@
-"use client"
+"use client";
 
-import { useAuth } from "../AuthProvider"
-import AddProductPage from "./components/addProduct"
-import ListProduct from "./components/listProduct"
-import Navbar from "./components/Navbar"
+import { useAuth } from "../AuthProvider";
+import AddProductPage from "./components/addProduct";
+import ListProduct from "./components/listProduct";
+import Navbar from "./components/Navbar";
+import Link from "next/link";
 
 export default function page() {
+  const { user, isLoading } = useAuth();
 
-    const { user, isLoading } = useAuth()
-
-    return (
-        <div className="grid grid-cols-2 min-h-screen">
+  return (
+    <>
+      <div className="bg-[#0C2B4E] min-h-screen flex flex-col justify-center items-center gap-4">
         <Navbar />
-        <div className="flex gap-3 justify-center items-center mt-11 bg-[#0C2C55]" id="liat_schedule">
-            <ListProduct />
+        <div className="mt-20 bg-[#0C2B4E]">
+          <AddProductPage />
         </div>
-        <div className="flex justify-center items-center mt-11 bg-[#08152F]" id="add_scehdule">
-            <AddProductPage />
-        </div>
+        <Link
+          href="/login"
+          className="bg-[#1A3D64] hover:bg-[#1A3D64]/60 font-bold text-white pl-5 pr-5 pt-3 pb-3 rounded-2xl"
+        >
+          Lihat List Produk
+        </Link>
       </div>
-    )
+    </>
+  );
 }
