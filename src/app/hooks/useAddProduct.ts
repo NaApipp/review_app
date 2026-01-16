@@ -77,7 +77,7 @@ export function useAddProduct() {
       }
 
       setStatusType("success");
-      setStatus(`Schedule berhasil ditambahkan dengan ID: ${data.id}`);
+      setStatus(`Produk berhasl di tambahkan, dengan kode produk: ${data.kodeProduk}`);
       setPlatform("");
       setKodeProduk("");
       setProdukName("");
