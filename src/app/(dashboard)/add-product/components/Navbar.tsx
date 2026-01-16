@@ -15,7 +15,7 @@ export default function Navbar() {
       {/* bar atas */}
       <div className="max-w-screen-xl mx-auto flex h-16 items-center justify-between px-4 relative">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
-          <p className="self-center text-xl text-heading font-poppins font-semibold whitespace-nowrap">
+          <p className="self-center text-white text-xl text-heading font-poppins font-semibold whitespace-nowrap">
             Hi, <span>{user?.username}</span>
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function Navbar() {
               <Link
                 href="/login-admin"
                 onClick={logout}
-                className="block py-2 px-3 bg-red-400 text-heading rounded hover:bg-neutral-tertiary  md:p-3"
+                className="block py-2 px-3 bg-[#CF0F0F] hover:bg-[#CF0F0F]/60 text-white text-heading rounded hover:bg-neutral-tertiary  md:p-3"
               >
                 Logout
               </Link>
