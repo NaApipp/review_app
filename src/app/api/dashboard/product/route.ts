@@ -58,50 +58,50 @@ function formatDateWIB(date: Date) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { platform, kodeProduk, produkName, linkProduk, price, imageUrl, createdAt } = body;
+    const products = Array.isArray(body) ? body : [body];
 
     const client = await clientPromise;
     const db = client.db("review_app");
     const collection = db.collection("product");
 
-    // Cek duplikasi kodeProduk
-    const existing = await collection.findOne({ productId: kodeProduk.trim() });
-    if (existing) {
-      return NextResponse.json(
-        {
-          errorCode: "DUPLICATE_KODE",
-          message: `Kode produk "${kodeProduk.trim()}" sudah ada`,
-        },
-        { status: 409 } // Conflict
-      );
-    }
-
-    
-    // const productId = await getNextProductId();
     const formattedDate = formatDateWIB(new Date());
-    
-    const result = await collection.insertOne({
-      productId: kodeProduk.trim()  ,
-      platform: platform.trim(),
-      produkName: produkName.trim(),
-      linkProduk: linkProduk.trim(),
-      price: Number(price),
-      imageUrl: imageUrl.trim(),
+
+    const docs = products.map((item) => ({
+      productId: item.kodeProduk.trim(),
+      platform: item.platform.trim(),
+      produkName: item.produkName.trim(),
+      linkProduk: item.linkProduk.trim(),
+      price: Number(item.price),
+      imageUrl: item.imageUrl.trim(),
       createdAt: formattedDate,
+    }));
+
+    const result = await collection.insertMany(docs, {
+      ordered: false, // lanjut walau ada duplikat
     });
 
     return NextResponse.json(
       {
         success: true,
-        id: result.insertedId
+        insertedCount: result.insertedCount,
+        insertedIds: result.insertedIds,
       },
-      { status: 200 }
+      { status: 201 }
     );
 
-    
-  } catch (error) {
-    console.error("POST /add_product:", error);
+  } catch (error: any) {
+    // Block Dupliacate Produk ID
+    if (error.code === 11000) {
+      return NextResponse.json(
+        {
+          errorCode: "DUPLICATE_KODE",
+          message: "Terdapat kode produk yang sudah ada",
+        },
+        { status: 409 }
+      );
+    }
 
+    console.error("POST /add_product:", error);
     return NextResponse.json(
       {
         errorCode: "SERVER_ERROR",
@@ -111,6 +111,7 @@ export async function POST(request: Request) {
     );
   }
 }
+
 
 export async function GET(request: Request) {
   try {
