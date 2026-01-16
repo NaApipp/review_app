@@ -134,7 +134,7 @@ export default function AddProductPage() {
           Submit
         </button>
         {status && (
-          <p style={{ color: statusType === "error" ? "red" : "green" }}>
+          <p className="font-bold" style={{ color: statusType === "error" ? "red" : "green" }}>
             {status}
           </p>
         )}
