@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { authStorageKeys } from "../../AuthProvider";
+import Link from "next/link";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -62,7 +63,7 @@ export default function LoginForm() {
                   onChange={(e) => setUsername(e.target.value)}
                   type="text"
                   id="email-alternative"
-                  className="border border-amber-300 text-sm rounded-2xl block w-full px-3 py-2.5 shadow"
+                  className="placeholder:text-gray-400 border border-amber-300 text-sm rounded-2xl block w-full px-3 py-2.5 shadow"
                   placeholder="Username"
                   required
                 />
@@ -76,7 +77,7 @@ export default function LoginForm() {
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   id="email-alternative"
-                  className="border border-amber-300 text-sm rounded-2xl block w-full px-3 py-2.5 shadow"
+                  className="placeholder:text-gray-400 border border-amber-300 text-sm rounded-2xl block w-full px-3 py-2.5 shadow"
                   placeholder="Password"
                   required
                 />
@@ -88,7 +89,14 @@ export default function LoginForm() {
               >
                 {loading ? "Loading..." : "Login"}
               </button>
+              {error && <p className="text-red-500 text-center">{error}</p>}
             </form>
+            <Link
+              href="/on-boarding"
+              className="mt-4 bg-[#1D546C] hover:bg-[#1D546C]/60 p-3 rounded-2xl text-white block text-center"
+            >
+              Kembali ke halaman utama
+            </Link>
           </div>
         </div>
       </div>
