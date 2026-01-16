@@ -1,36 +1,179 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Review App
 
-## Getting Started
+A web application to **view products and provide reviews** simply, securely, and modernly.
 
-First, run the development server:
+**Live Demo:**
+[https://mini-review-app.vercel.app/](https://mini-review-app.vercel.app/)
+
+---
+
+## Overview
+
+**Review App** is a website that allows users to:
+
+* View product list
+* Open product details
+* Read reviews from other users
+* Give reviews and ratings
+* Login and logout securely
+
+This application is similar to the review system we often find in marketplaces or review websites.
+
+
+---
+
+
+## Main Feature
+
+### User Features
+
+* Login & Logout 
+* View product list
+*  Pagination (9 products per page)
+*  Product details
+*  Provide reviews and ratings
+*  Auto logout if user is inactive (idle timeout)
+* Add Product (Admin Only)
+
+### Technical Features
+
+* Server Side Rendering (SEO Friendly)
+* Protected Route using Layout
+* Context API for authentication
+* REST API using Next.js
+* MongoDB Native Driver
+
+---
+
+## Technologies Used
+
+| Technology       | Function                      |
+| ---------------- | ----------------------------- |
+| **Next.js 14+**  | Fullstack React Framework     |
+| **TypeScript**   | Maintain data type consistency |
+| **MongoDB**      | NoSQL Database                |
+| **Tailwind CSS** | UI Styling                    |
+| **Context API**  | State Management (Auth)       |
+| **Vercel**       | Deployment                    |
+| **Mongoose**     | MongoDB Package               |
+
+---
+
+##  Folder Structure (Simple Explanation)
+
+```
+src/
+ ├── app/
+ │   ├── (protected)/
+ │   │   ├── AuthProvider.tsx   # Context login & auth
+ │   │   └── layout.tsx         # Protect pages
+ │   │
+ │   ├── (main)/
+ │   │   └── beranda/
+ │   │       ├── page.tsx       # Product list + pagination
+ │   │       ├── [productId]/
+ │   │       │   └── page.tsx   # Product details & reviews
+ │   │       └── components/
+ │   │           └── Header.tsx # Header + logout
+ │   │
+ │   ├── api/
+ │   │   └── main/
+ │   │       ├── auth/          # Login, logout, me
+ │   │       ├── product/       # Product API
+ │   │       └── review/        # Review API
+ │
+ ├── lib/
+ │   └── mongodb.ts             # MongoDB Connection
+ │
+ └── public/
+```
+
+---
+
+##  Authentication System
+
+* User login receives a **token**
+* Token is stored in **sessionStorage**
+* User data is fetched from `/api/main/auth/me` endpoint
+* Certain pages are protected by **Protected Layout**
+* If user is inactive for 15 minutes → **auto logout**
+
+All processes run automatically in the background.
+
+---
+
+## API Endpoints
+
+| Endpoint                | Method | Function            |
+| ----------------------- | ------ | ------------------- |
+| `/api/main/auth/login`  | POST   | Login user          |
+| `/api/main/auth/logout` | POST   | Logout user         |
+| `/api/main/auth/me`     | GET    | Get user data       |
+| `/api/main/product`     | GET    | Get product list    |
+| `/api/main/review`      | GET    | Get reviews         |
+| `/api/main/review`      | POST   | Add review          |
+
+---
+
+## How to Run Project (For Main Developer)
+
+<!-- ### 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/NaApipp/review_app.git
+cd review_app
+```
+
+### 2️⃣ Install Dependency
+
+```bash
+npm install
+```
+
+### 3️⃣ Setup Environment
+
+Create `.env.local` file
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+```
+
+### 4️⃣ Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+``` -->
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+##  Pagination
 
-To learn more about Next.js, take a look at the following resources:
+* Displays **9 products per page**
+* **Next & Previous** buttons
+* Buttons automatically disabled on first or last page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+##  Security & Best Practice
 
-## Deploy on Vercel
+✔ Database queries only in Server Component
+✔ No database access on client
+✔ Auth state isolated in Client Component
+✔ Scalable project structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+## About the Developer
+
+**Main Developer:** NaApipp
+**Project:** Review App
+
+---
