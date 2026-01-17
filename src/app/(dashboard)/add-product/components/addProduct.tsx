@@ -38,6 +38,7 @@ export default function AddProductPage() {
             value={kodeProduk}
             placeholder="KODE-01"
             onChange={(e) => setKodeProduk(e.target.value)}
+            required
           />
         </div>
 
@@ -52,6 +53,7 @@ export default function AddProductPage() {
             id="platform"
             value={platform}
             onChange={(e) => setPlatform(e.target.value)}
+            required
           >
             <option value="" disabled>
               -- Pilih Platform --
@@ -76,6 +78,7 @@ export default function AddProductPage() {
             value={produkName}
             placeholder="Contoh: Iphone 15 Promax"
             onChange={(e) => setProdukName(e.target.value)}
+            required
           />
         </div>
 
@@ -92,6 +95,7 @@ export default function AddProductPage() {
             id="link_product"
             value={linkProduk}
             onChange={(e) => setLinkProduk(e.target.value)}
+            required
           />
         </div>
 
@@ -108,6 +112,7 @@ export default function AddProductPage() {
             placeholder="2000000"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
           />
         </div>
 
@@ -124,6 +129,7 @@ export default function AddProductPage() {
             placeholder="Contoh: https://url-image/..."
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
+            required
           />
         </div>
         <button
