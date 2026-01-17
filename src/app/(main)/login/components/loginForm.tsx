@@ -31,8 +31,8 @@ export default function LoginForm() {
       }
 
       const data = (await res.json()) as { token: string };
-      sessionStorage.setItem(authStorageKeys.TOKEN_KEY, data.token);
-      sessionStorage.setItem(
+      localStorage.setItem(authStorageKeys.TOKEN_KEY, data.token);
+      localStorage.setItem(
         authStorageKeys.LAST_ACTIVITY_KEY,
         String(Date.now())
       );

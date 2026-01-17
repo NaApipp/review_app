@@ -34,8 +34,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // no-op
     }
 
-    sessionStorage.removeItem(TOKEN_KEY);
-    sessionStorage.removeItem(LAST_ACTIVITY_KEY);
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(LAST_ACTIVITY_KEY);
     setToken(null);
     setUser(null);
 
@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Guard + load user
   useEffect(() => {
-    const t = sessionStorage.getItem(TOKEN_KEY);
+    const t = localStorage.getItem(TOKEN_KEY);
     setToken(t);
 
     if (!t) {
@@ -84,13 +84,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     const markActivity = () => {
-      sessionStorage.setItem(LAST_ACTIVITY_KEY, String(Date.now()));
+      localStorage.setItem(LAST_ACTIVITY_KEY, String(Date.now()));
       schedule();
     };
 
     // Inisialisasi
-    if (!sessionStorage.getItem(LAST_ACTIVITY_KEY)) {
-      sessionStorage.setItem(LAST_ACTIVITY_KEY, String(Date.now()));
+    if (!localStorage.getItem(LAST_ACTIVITY_KEY)) {
+      localStorage.setItem(LAST_ACTIVITY_KEY, String(Date.now()));
     }
     schedule();
 
@@ -99,7 +99,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const onVisibility = () => {
       if (document.visibilityState !== "visible") return;
-      const last = Number(sessionStorage.getItem(LAST_ACTIVITY_KEY) || 0);
+      const last = Number(localStorage.getItem(LAST_ACTIVITY_KEY) || 0);
       if (last && Date.now() - last > IDLE_MS) logout();
     };
     document.addEventListener("visibilitychange", onVisibility);
