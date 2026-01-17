@@ -27,55 +27,113 @@ export default async function ProductDetailPage({
   return (
     <>
       <div className="flex flex-row min-h-screen">
+        {/* Main Container [Left] */}
         <div className="bg-[#0C2B4E] flex flex-col items-center p-4 w-1/2">
-          <h1 className="text-center font-black">{product.produkName}</h1>
+          {/* Container Detail Produk */}
+          <div className="max-w-xl w-full">
+            {/* Container Deskripsi Produk */}
+            <div className="grid grid-cols-2 gap-6 items-start">
+              {/* Image */}
+              <img
+                src={product.imageUrl}
+                alt={product.produkName}
+                className="w-full h-auto rounded-xl shadow-md object-cover"
+              />
 
-          <h2 className="font-semibold mt-5 underline underline-offset-4">Review Produk</h2>
-          {/* Jika belum ada review */}
-          {reviews.length === 0 && (
-            <p className="mt-4 text-gray-400">
-              Belum ada review untuk produk ini.
-            </p>
-          )}
+              {/* Product Info */}
+              <div className="flex flex-col gap-3 text-white">
+                <span className="text-sm uppercase tracking-wide text-white/90">
+                  {product.platform}
+                </span>
 
-          <div className="flex flex-row flex-wrap gap-4 justify-center mt-4">
-            {reviews.map((r: any) => (
-            <div className="text-white mt-3 border p-2 rounded-2xl flex flex-col gap-2 font-bold"  key={r._id}>
-              <p className="text-center">Bintang: ⭐ {r.rating}</p>
-              <p>Ulasan: {r.review}</p>
-              <p>Reviewer: {r.reviewer}</p>
-              {/* ⭐ {r.rating} — "{r.review}" from {r.reviewer} */}
+                <h2 className="text-xl font-semibold leading-snug">
+                  {product.produkName}
+                </h2>
+
+                <p className="text-lg font-bold text-emerald-300">
+                  Rp {product.price}
+                </p>
+
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={product.linkProduk}
+                  className="mt-2 inline-flex items-center justify-center w-fit px-4 py-2 rounded-lg bg-white text-[#0C2B4E] text-sm font-medium hover:bg-white/90 transition"
+                >
+                  Lihat di {product.platform}
+                </a>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Container Ulasan */}
+          <div className="mt-8">
+            <h2 className="text-center text-xl font-semibold text-white">
+              Ulasan Produk
+            </h2>
+
+            {/* Jika belum ada review */}
+            {reviews.length === 0 && (
+              <p className="mt-4 text-gray-400 text-center">
+                Belum ada review untuk produk ini.
+              </p>
+            )}
+
+            <div className="mt-6 flex flex-wrap gap-4">
+              {reviews.map((r: any) => (
+                <div
+                  key={r._id}
+                  className="bg-white/10 backdrop-blur rounded-xl p-4 text-white transition-transform duration-300 ease-out hover:scale-[1.03]"
+                >
+                  {/* Header review */}
+                  <div className="flex items-center gap-3 mb-2">
+                    {/* Avatar kosong */}
+                    <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="w-6 h-6 text-white/70"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M12 2a6 6 0 100 12 6 6 0 000-12zm-9 18a9 9 0 0118 0H3z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    {/* Nama & rating */}
+                    <div className="flex flex-col">
+                      <span className="font-medium">{r.reviewer}</span>
+                      <span className="text-sm text-yellow-400">
+                        {"★".repeat(r.rating)}
+                        {"☆".repeat(5 - r.rating)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Isi review */}
+                  <p className="text-sm text-white/90 leading-relaxed">
+                    {r.review}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+
+        {/* Container Tambah Ulasan [Right] */}
         <div className="bg-[#1A3D64] flex flex-col justify-center items-center w-1/2">
-            <ReviewForm productId={productId} />
-            <Link href="/beranda" className="bg-[#0C2B4E] hover:bg-[#0C2B4E]/60 font-bold p-3 rounded-2xl mt-3">Kembali Ke Beranda</Link>
+          <ReviewForm productId={productId} />
+          <Link
+            href="/beranda"
+            className="bg-[#0C2B4E] hover:bg-[#0C2B4E]/60 font-bold p-3 rounded-2xl mt-3"
+          >
+            Kembali Ke Beranda
+          </Link>
         </div>
       </div>
     </>
-    // <div className="p-6 max-w-3xl mx-auto">
-    //   <h1 className="text-2xl font-bold">
-    //     {product.produkName}
-    //   </h1>
-
-    //   <h2 className="mt-6 font-semibold">Reviews</h2>
-
-    //      {/* Jika belum ada review */}
-    //   {reviews.length === 0 && (
-    //     <p className="mt-4 text-gray-400">
-    //       Belum ada review untuk produk ini.
-    //     </p>
-    //   )}
-
-    //   {reviews.map((r: any) => (
-    //     <div className="text-white" key={r._id}>
-    //       ⭐ {r.rating} — "{r.review}" from {r.reviewer}
-    //     </div>
-    //   ))}
-
-    //   <ReviewForm productId={productId} />
-    // </div>
   );
 }
