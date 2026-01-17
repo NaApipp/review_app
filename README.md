@@ -64,26 +64,38 @@ This application is similar to the review system we often find in marketplaces o
 ```
 src/
  ├── app/
- │   ├── (protected)/
- │   │   ├── AuthProvider.tsx   # Context login & auth
- │   │   └── layout.tsx         # Protect pages
+ │   |
+ │   │
+ │   ├── (dashboard)/
+ │   │   └── add-product/
+ │   │       ├── comoponents/
+ │   │       └── page.tsx             # Add Prouct From
+ │   │
  │   │
  │   ├── (main)/
  │   │   └── beranda/
- │   │       ├── page.tsx       # Product list + pagination
+ │   │       ├── page.tsx             # Product list + pagination
  │   │       ├── [productId]/
- │   │       │   └── page.tsx   # Product details & reviews
+ │   │       |   └── page.tsx         # Product details & import reviews form
+ │   │       |   └── ReviewForm.tsx   # Reviews product Form
  │   │       └── components/
- │   │           └── Header.tsx # Header + logout
+ │   │           └── Header.tsx       # Header + logout
  │   │
  │   ├── api/
  │   │   └── main/
- │   │       ├── auth/          # Login, logout, me
- │   │       ├── product/       # Product API
- │   │       └── review/        # Review API
+ │   │       ├── auth/                # Login, logout, me
+ │   │       ├── product/             # Product API
+ │   │       └── review/              # Review API
+ │
+ ├── hooks/
+ │   └── useAddProduct.ts             # Manage State and side effect
  │
  ├── lib/
- │   └── mongodb.ts             # MongoDB Connection
+ │   └── mongodb.ts                   # MongoDB Connection
+ │
+ ├── models/                          # Data validation when retrieving/saving
+ │   └── Products.ts                  
+ │   └── Reviews.ts                   
  │
  └── public/
 ```
@@ -112,10 +124,11 @@ All processes run automatically in the background.
 | `/api/main/product`     | GET    | Get product list    |
 | `/api/main/review`      | GET    | Get reviews         |
 | `/api/main/review`      | POST   | Add review          |
+| `/api/dashboard/product`      | POST   | Add Product          |
 
 ---
 
-## How to Run Project (For Main Developer)
+## How to Run Project (Req Main Developer)
 
 <!-- ### 1️⃣ Clone Repository
 
