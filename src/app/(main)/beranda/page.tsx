@@ -31,11 +31,31 @@ export default async function ProductsPage({ searchParams }: PageProps) {
   const limit = 20;
   const skip = (page - 1) * limit;
 
-  const [products, totalProducts] = await Promise.all([
-    db.collection("product").find({}).skip(skip).limit(limit).toArray(),
-    db.collection("product").countDocuments(),
-  ]);
+const [products, totalProducts] = await Promise.all([
+  db
+    .collection("product")
+    .aggregate([
+      {
+        $addFields: {
+          productNumber: {
+            $toInt: {
+              $arrayElemAt: [
+                { $split: ["$productId", "-"] },
+                1
+              ]
+            }
+          }
+        }
+      },
+      { $sort: { productNumber: 1 } },
+      { $skip: skip },
+      { $limit: limit }
+    ])
+    .toArray(),
 
+  db.collection("product").countDocuments(),
+  ]);
+  
   const totalPages = Math.ceil(totalProducts / limit);
 
   return (
