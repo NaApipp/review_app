@@ -16,5 +16,6 @@ export const USERS: userReview[] = [
   { username: "sawah_hijau", password: "padiMenguning3", role: "user" },
   { username: "ombak_laut", password: "samudraBesar62", role: "user" },
   { username: "bhinneka", password: "ragamSatu99", role: "user" },
+  { username: "gajahkayang", password: "gajahsulap" , role: "user" },
 ];
 
