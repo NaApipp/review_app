@@ -1,10 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
 import { useAuth } from "../../AuthProvider";
-
-import Link from "next/link";
 
 export default function ReviewForm({
   productId
@@ -12,30 +9,46 @@ export default function ReviewForm({
   productId: string;
 }) {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>("");
 
   const { user } = useAuth();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     const form = e.target as HTMLFormElement;
 
-    await fetch("/api/main/review", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        productId,
-        reviewer: form.reviewer.value,
-        rating: Number(form.rating.value),
-        review: form.review.value
-      })
-    });
+    try {
+      const res = await fetch("/api/main/review", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          productId,
+          reviewer: user?.username,
+          rating: Number(form.rating.value),
+          review: form.review.value
+        })
+      });
 
-    form.reset();
-    setLoading(false);
+      const data = await res.json();
+
+      if (!res.ok) {
+        // ⬅️ HANYA TAMPILKAN ERROR MESSAGE
+        setError(data.message || "Terjadi kesalahan");
+        return;
+      }
+
+      // sukses → reset form
+      form.reset();
+    } catch {
+      setError("Server tidak dapat dihubungi");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -49,7 +62,6 @@ export default function ReviewForm({
 
       <input
         name="reviewer"
-        placeholder="Nama"
         className="field-input-review"
         value={user?.username || ""}
         readOnly
@@ -81,6 +93,13 @@ export default function ReviewForm({
       >
         {loading ? "Mengirim..." : "Kirim Review"}
       </button>
+
+      {/* ✅ ERROR MESSAGE ONLY */}
+      {error && (
+        <p className="text-red-600 text-sm">
+          {error}
+        </p>
+      )}
     </form>
   );
 }
