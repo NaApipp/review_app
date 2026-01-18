@@ -4,8 +4,8 @@ import Link from "next/link";
 export default function Header() {
 
     return (    
-        <div className="flex flex-row items-center justify-between mb-5">
-        <h1 className="text-2xl font-bold">Daftar Produk</h1>
+        <div className="flex md:flex-row md:gap-0 flex-col gap-3 items-center justify-between mb-5">
+        <h1 className="md:text-2xl font-bold">Daftar Produk</h1>
         <Link
           href="/on-boarding"
           className="block py-2 px-3 bg-[#1D546C] hover:bg-[#1D546C]/60 text-white text-heading rounded hover:bg-neutral-tertiary  md:p-3"

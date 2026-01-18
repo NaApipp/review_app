@@ -26,13 +26,38 @@ export default async function ProductDetailPage({
 
   return (
     <>
-      <div className="flex flex-row min-h-screen">
-        {/* Main Container [Left] */}
-        <div className="bg-[#0C2B4E] flex flex-col items-center p-4 w-1/2">
+      <div className="flex md:flex-row flex-col min-h-screen">
+        <div className="bg-[#0C2B4E] p-7 justify-between items-center gap-7 flex flex-row md:hidden">
+          <Link href={"/beranda"}>
+            <svg
+              className="w-9 h-9 text-gray-800 dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 12h14M5 12l4-4m-4 4 4 4"
+              />
+            </svg>
+          </Link>
+          <h1 className="font-bold text-xl">
+            Detail Produk
+          </h1>
+          <div className="w-6"></div>
+        </div>
+        {/* Main Container [Left->Desktop] */}
+        <div className="bg-[#0C2B4E] flex flex-col items-center p-4 md:w-1/2">
           {/* Container Detail Produk */}
           <div className="max-w-xl w-full">
             {/* Container Deskripsi Produk */}
-            <div className="grid grid-cols-2 gap-6 items-start">
+            <div className="grid md:grid-cols-2 gap-6 items-start">
               {/* Image */}
               <img
                 src={product.imageUrl}
@@ -123,12 +148,12 @@ export default async function ProductDetailPage({
           </div>
         </div>
 
-        {/* Container Tambah Ulasan [Right] */}
-        <div className="bg-[#1A3D64] flex flex-col justify-center items-center w-1/2">
+        {/* Container Tambah Ulasan [Right -> Desktop] */}
+        <div className="bg-[#1A3D64] flex flex-col justify-center items-center md:w-1/2">
           <ReviewForm productId={productId} />
           <Link
             href="/beranda"
-            className="bg-[#0C2B4E] hover:bg-[#0C2B4E]/60 font-bold p-3 rounded-2xl mt-3"
+            className="bg-[#0C2B4E] hover:bg-[#0C2B4E]/60 font-bold p-3 m-4 mt-4 rounded-2xl mt-3 hidden"
           >
             Kembali Ke Beranda
           </Link>

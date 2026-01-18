@@ -9,7 +9,7 @@ export default function OnBoardingPage() {
     <>
       <div className="flex flex-col items-center justify-center min-h-screen gap-6 bg-[#1A3D64] text-[#F4F4F4]">
         {/* Headline */}
-        <h1 className="text-[1.3rem] font-bold">
+        <h1 className="md:text-[1.3rem] text-center font-bold">
           <TypeAnimation
             sequence={[
               "Selamat Datang Di Mini Project Review App",
@@ -23,7 +23,7 @@ export default function OnBoardingPage() {
             repeat={Infinity}
           />
         </h1>
-        <div className="flex gap-4">
+        <div className="flex gap-4 md:mt-0 mt-7">
           <Link
             href={"/login-admin"}
             className="bg-[#1D546C] p-4 rounded-lg text-[#F4F4F4]"

@@ -54,7 +54,7 @@ export default function ReviewForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-8 pt-6 space-y-3 form-add-product"
+      className="mt-8 mb-8 pt-6 space-y-3 form-add-product"
     >
       <h3 className="text-lg text-center text-black font-semibold">
         Tambah Review

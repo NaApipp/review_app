@@ -63,47 +63,78 @@ const [products, totalProducts] = await Promise.all([
       <Header />
       {/* <h1 className="text-2xl font-bold mb-6 text-center">Daftar Produk</h1> */}
 
-      <table className="w-full border-collapse rounded-xl overflow-hidden shadow-sm">
-        <thead className="bg-slate-100">
-          <tr className="text-slate-700 text-sm uppercase tracking-wide">
-            <th className="px-6 py-4 text-center">ID Produk</th>
-            <th className="px-6 py-4 text-center">Image</th>
-            <th className="px-6 py-4 text-center">Nama Produk</th>
-            <th className="px-6 py-4 text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-200">
-          {products.map((product: any) => (
-            <tr
-              key={product.productId}
-              className="hover:bg-[#0C2B4E] transition-colors"
-            >
-              <td className="px-6 py-4 font-medium text-white">
-                {product.productId}
-              </td>
+      {/* Desktop Table View */}
+      <div className="hidden md:block overflow-x-auto">
+        <table className="w-full border-collapse rounded-xl overflow-hidden shadow-sm">
+          <thead className="bg-slate-100">
+            <tr className="text-slate-700 text-sm uppercase tracking-wide">
+              <th className="px-6 py-4 text-center">ID Produk</th>
+              <th className="px-6 py-4 text-center">Image</th>
+              <th className="px-6 py-4 text-center">Nama Produk</th>
+              <th className="px-6 py-4 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-200">
+            {products.map((product: any) => (
+              <tr
+                key={product.productId}
+                className="hover:bg-[#0C2B4E] transition-colors"
+              >
+                <td className="px-6 py-4 font-medium text-white">
+                  {product.productId}
+                </td>
 
-              <td className="px-6 py-4">
-                <img
-                  src={product.imageUrl}
-                  alt={product.produkName}
-                  className="w-20 h-20 object-cover rounded-lg shadow"
-                />
-              </td>
+                <td className="px-6 py-4">
+                  <img
+                    src={product.imageUrl}
+                    alt={product.produkName}
+                    className="w-20 h-20 object-cover rounded-lg shadow"
+                  />
+                </td>
 
-              <td className="px-6 py-4 text-white">{product.produkName}</td>
+                <td className="px-6 py-4 text-white">{product.produkName}</td>
 
-              <td className="px-6 py-4">
+                <td className="px-6 py-4">
+                  <a
+                    href={`/beranda/${product.productId}`}
+                    className="inline-flex items-center justify-center bg-[#1D546C] hover:bg-[#163F52] text-white text-sm font-medium px-4 py-2 rounded-lg transition"
+                  >
+                    Review Produk
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile Card View */}
+      <div className="md:hidden grid grid-cols-1 gap-4">
+        {products.map((product: any) => (
+          <div
+            key={product.productId}
+            className="bg-[#0C2B4E] rounded-lg p-4 shadow-sm hover:bg-[#163F52] transition-colors"
+          >
+            <div className="flex gap-4">
+              <img
+                src={product.imageUrl}
+                alt={product.produkName}
+                className="w-20 h-20 object-cover rounded-lg shadow"
+              />
+              <div className="flex-1">
+                <p className="text-xs text-gray-300 mb-1">ID: {product.productId}</p>
+                <h3 className="text-white font-medium mb-3">{product.produkName}</h3>
                 <a
                   href={`/beranda/${product.productId}`}
-                  className="inline-flex items-center justify-center bg-[#1D546C] hover:bg-[#163F52] text-white text-sm font-medium px-4 py-2 rounded-lg transition"
+                  className="inline-flex items-center justify-center bg-[#1D546C] hover:bg-[#163F52] text-white text-xs font-medium px-3 py-2 rounded-lg transition"
                 >
                   Review Produk
                 </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
       {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {products.map((product: any) => (
           <div
