@@ -13,43 +13,47 @@ export default function ReviewForm({
 
   const { user } = useAuth();
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
 
-    const form = e.target as HTMLFormElement;
+  const form = e.target as HTMLFormElement;
 
-    try {
-      const res = await fetch("/api/main/review", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          productId,
-          reviewer: user?.username,
-          rating: Number(form.rating.value),
-          review: form.review.value
-        })
-      });
+  try {
+    const res = await fetch("/api/main/review", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        productId,
+        reviewer: user?.username,
+        rating: Number(form.rating.value),
+        review: form.review.value,
+      }),
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (!res.ok) {
-        // ⬅️ HANYA TAMPILKAN ERROR MESSAGE
-        setError(data.message || "Terjadi kesalahan");
-        return;
-      }
-
-      // sukses → reset form
-      form.reset();
-    } catch {
-      setError("Server tidak dapat dihubungi");
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      setError(data.message || "Terjadi kesalahan");
+      return;
     }
+
+    // sukses → reset form & refresh halaman
+    form.reset();
+
+    // delay sebentar agar user melihat tombol loading selesai
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+
+  } catch {
+    setError("Server tidak dapat dihubungi");
+  } finally {
+    setLoading(false);
   }
+}
+
 
   return (
     <form
