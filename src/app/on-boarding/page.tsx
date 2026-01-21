@@ -25,16 +25,16 @@ export default function OnBoardingPage() {
         </h1>
         <div className="flex gap-4 md:mt-0 mt-7">
           <Link
-            href={"/login-admin"}
+            href={"/handphone-sector"}
             className="bg-[#1D546C] p-4 rounded-lg text-[#F4F4F4]"
           >
-            Login Admin
+            Handphone Sector
           </Link>
           <Link
-            href={"/login"}
+            href={"/laptop-sector"}
             className="bg-[#1D546C] p-4 rounded-lg text-[#F4F4F4]"
           >
-            Login Review
+            Laptop Sector
           </Link>
         </div>
       </div>
