@@ -19,7 +19,7 @@ export default function Navbar() {
             Hi, <span>{user?.username}</span>
           </p>
         </div>
-
+        
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
