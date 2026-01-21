@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -54,7 +54,8 @@ export default function Navbar() {
             bg-[#102D41]
           `}
         >
-          <ul className="
+          <ul
+            className="
             font-semibold font-poppins
             flex flex-col
             p-4
@@ -62,7 +63,16 @@ export default function Navbar() {
             bg-neutral-secondary-soft
             md:flex-row md:items-center md:space-x-8 rtl:space-x-reverse
             md:p-0 md:border-0 md:bg-transparent
-          ">
+          "
+          >
+            <li>
+              <Link
+                href="/on-boarding"
+                className="bg-[#1A3D64] hover:bg-[#1A3D64]/60 font-bold text-white pl-5 pr-5 pt-3 pb-3 rounded"
+              >
+                List Produk
+              </Link>
+            </li>
             <li>
               <Link
                 href="/login-admin"
