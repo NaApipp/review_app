@@ -27,7 +27,7 @@ export default function OnBoardingPage() {
           {/* Handphone Sector Card */}
           <Link href={"/handphone-sector"} className="bg-[#26476C] border border-[#2b507a] rounded-2xl p-5 flex items-center flex-col w-69 transition-transform duration-300 hover:scale-110 cursor-pointer">
             <div
-              className="bg-[#305073] w-min flex items-center justify-center border-[#36659b] border rounded-[1005] p-5"
+              className="bg-[#305073] w-min flex items-center justify-center border-[#36659b] border rounded-[40%] p-5"
               id="icon"
             >
               <svg
@@ -52,7 +52,7 @@ export default function OnBoardingPage() {
           {/* Laptop Sector Card */}
           <Link href={"/laptop-sector"} className="bg-[#26476C] border border-[#2b507a] rounded-2xl p-5 flex items-center flex-col w-69 transition-transform duration-300 hover:scale-110 cursor-pointer">
             <div
-              className="bg-[#305073] w-min flex items-center justify-center border-[#36659b] border rounded-[1005] p-5"
+              className="bg-[#305073] w-min flex items-center justify-center border-[#36659b] border rounded-[40%] p-5"
               id="icon"
             >
               <svg
