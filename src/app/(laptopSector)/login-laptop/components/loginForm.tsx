@@ -50,7 +50,7 @@ export default function LoginForm() {
         <div className="relative hidden lg:flex flex-col justify-between p-10 bg-gradient-to-br from-[#071c2f] to-[#0c2f4f] text-white">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
               💻
             </div>
             <span className="font-semibold text-lg">Sector Laptop</span>
