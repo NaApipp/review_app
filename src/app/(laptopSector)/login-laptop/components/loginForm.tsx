@@ -123,7 +123,7 @@ export default function LoginForm() {
                   onChange={(e) => setUsername(e.target.value)}
                   type="text"
                   placeholder="Masukkan username..."
-                  className="w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -137,7 +137,7 @@ export default function LoginForm() {
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   placeholder="Masukkan password..."
-                  className="w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
