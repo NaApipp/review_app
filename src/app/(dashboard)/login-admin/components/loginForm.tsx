@@ -45,11 +45,11 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="bg-[#08152F] min-h-screen">
+      <div className="flex items-center justify-center bg-gradient-to-br from-[#131A21] to-[#112C32] min-h-screen">
         {/* Container Screen */}
         <div className="flex justify-center">
           {/* Container 1 */}
-          <div className="bg-[#102D41] m-5 rounded-2xl p-10" id="form">
+          <div className="bg-[#13202D] m-5 rounded-2xl p-10" id="form">
             <h2 className="text-2xl font-bold mb-6 text-center text-white">
               Login Dashboard Admin
             </h2>
