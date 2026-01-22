@@ -1,8 +1,10 @@
 "use client";
 
+// import hooks
 import { useAddProduct } from "@/app/hooks/useAddProduct";
 
 export default function AddProductPage() {
+  // Hook for connection to API Database
   const {
     platform,
     setPlatform,
@@ -55,9 +57,7 @@ export default function AddProductPage() {
             onChange={(e) => setPlatform(e.target.value)}
             required
           >
-            <option value="" disabled>
-              -- Pilih Platform --
-            </option>
+            <option value="" disabled>-- Pilih Platform --</option>
             <option value="shopee">Shopee</option>
             <option value="tokopedia">Tokopedia</option>
             <option value="lazada">Lazada</option>
@@ -132,6 +132,7 @@ export default function AddProductPage() {
             required
           />
         </div>
+        {/* Button submit */}
         <button
           className="btn-submit-product"
           type="submit"
@@ -139,6 +140,8 @@ export default function AddProductPage() {
         >
           Submit
         </button>
+        
+        {/* Status after submit */}
         {status && (
           <p className="font-bold" style={{ color: statusType === "error" ? "red" : "green" }}>
             {status}

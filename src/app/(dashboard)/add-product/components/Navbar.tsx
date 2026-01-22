@@ -1,13 +1,19 @@
 "use client";
 
+// import state
 import { useState } from "react";
 import Link from "next/link";
+
+// import AUTH PROVIDER
 import { useAuth } from "../../AuthProvider";
 
 export default function Navbar() {
+  // Create variable state
   const [open, setOpen] = useState(false);
+  // Create variable auth
   const { user, logout } = useAuth();
 
+  // create function for mobile view
   const close = () => setOpen(false);
 
   return (

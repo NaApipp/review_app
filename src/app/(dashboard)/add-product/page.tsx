@@ -8,15 +8,18 @@ import AddLaptopPage from "./components/addLaptop";
 import Navbar from "./components/Navbar";
 
 export default function page() {
+  // Vaiable AUTH
   const { user, isLoading } = useAuth();
 
   return (
     <>
     {/* Navbar */}
       <div className="bg-[#0C2B4E] min-h-screen flex flex-row justify-center items-center gap-4">
+        
+        {/* Import Navbar */}
         <Navbar />
 
-        {/* Login Form For Laptop */}
+        {/* Form For add Laptop */}
         <div className="mt-20 bg-[#0C2B4E] flex flex-col justify-center items-center w-1/2">
           <h1 className="mb-5 text-2xl font-bold">Add Display Laptop</h1>
           <AddLaptopPage />
@@ -25,7 +28,7 @@ export default function page() {
         {/* Line */}
         <div className="h-3/4 border-l-2 border-gray-400"></div>
         
-        {/* Login Form For Handphone */}
+        {/* Form For add Handphone */}
         <div className="mt-20 bg-[#0C2B4E] flex flex-col justify-center items-center w-1/2">
           <h1 className="mb-5 text-2xl font-bold">Add Display Handphone</h1>
           <AddProductPage />

@@ -1,15 +1,48 @@
 // components/AuthProvider.tsx
 "use client";
 
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+// IMPORT DEPENDENCIES
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { usePathname, useRouter } from "next/navigation";
 
+/**
+ * ================================
+ * CONSTANTS
+ * ================================
+ */
+
+
+// Key untuk menyimpan token auth di sessionStorage
 const TOKEN_KEY = "demo_auth_token";
+
+
+// Key untuk menyimpan timestamp aktivitas terakhir user
 const LAST_ACTIVITY_KEY = "demo_last_activity_ms";
+
+
+// Auto logout setelah idle 15 menit
 const IDLE_MS = 15 * 60 * 1000;
 
-type User = { username: string; role: string };
+/**
+ * ================================
+ * TYPES
+ * ================================
+ */
 
+// Struktur data user dari userReviwe.ts backend
+type User = {
+  username: string;
+  role: string;
+};
+
+// Struktur data AuthContext
 type AuthContextValue = {
   token: string | null;
   user: User | null;
@@ -17,51 +50,88 @@ type AuthContextValue = {
   logout: () => void;
 };
 
+/**
+ * ================================
+ * CONTEXT
+ * ================================
+ */
+
+// Membuat AuthContext secara global
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
+
+/**
+ * ================================
+ * AUTH PROVIDER
+ * ================================
+ */
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter(); //  redirect halaman
+  const pathname = usePathname(); //  cek path aktif
 
-  const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // State utama auth
+  const [token, setToken] = useState<string | null>(null); // JWT token
+  const [user, setUser] = useState<User | null>(null); // Data user
+  const [isLoading, setIsLoading] = useState(true); // Status loading auth
 
+// LOGOUT FUNCTION
   const logout = useCallback(async () => {
     try {
+      // Inform backend untuk logout (optional)
       await fetch("/api/dashboard/auth/logout", { method: "POST" });
     } catch {
-      // no-op
+      // Jika gagal, abaikan (client tetap logout)
     }
 
+    // Hapus data auth dari sessionStorage
     sessionStorage.removeItem(TOKEN_KEY);
     sessionStorage.removeItem(LAST_ACTIVITY_KEY);
+
+    // Reset state
     setToken(null);
     setUser(null);
 
-    if (pathname !== "/login-admin") router.replace("/login-admin");
+    // Redirect ke halaman login
+    if (pathname !== "/login-admin") {
+      router.replace("/login-admin");
+    }
   }, [pathname, router]);
 
-  // Guard + load user
+  /**
+   * ================================
+   * AUTH GUARD & LOAD USER
+   * ================================
+   */
   useEffect(() => {
+    // Ambil token dari sessionStorage
     const t = sessionStorage.getItem(TOKEN_KEY);
     setToken(t);
 
+    // Jika token tidak ada → redirect login
     if (!t) {
       setIsLoading(false);
-      if (pathname !== "/login-admin") router.replace("/login-admin");
+      if (pathname !== "/login-admin") {
+        router.replace("/login-admin");
+      }
       return;
     }
 
+    // Jika token ada → fetch user
     (async () => {
       try {
         const res = await fetch("/api/dashboard/auth/me", {
-          headers: { Authorization: `Bearer ${t}` },
+          headers: {
+            Authorization: `Bearer ${t}`,
+          },
         });
-        if (!res.ok) throw new Error("unauthorized");
+
+        // Token invalid / expired
+        if (!res.ok) throw new Error("Unauthorized");
+
         const data = (await res.json()) as { user: User };
         setUser(data.user);
       } catch {
+        // Error → logout paksa
         await logout();
       } finally {
         setIsLoading(false);
@@ -70,59 +140,123 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Auto-logout idle 15 menit
+  /**
+   * ================================
+   * AUTO LOGOUT (IDLE TIMEOUT)
+   * ================================
+   */
   useEffect(() => {
+    // Jika belum login → jangan pasang idle listener
     if (!token) return;
 
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-    const schedule = () => {
+    // Reset timer logout
+    const scheduleLogout = () => {
       if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         logout();
       }, IDLE_MS);
     };
 
+    // Tandai aktivitas user
     const markActivity = () => {
       sessionStorage.setItem(LAST_ACTIVITY_KEY, String(Date.now()));
-      schedule();
+      scheduleLogout();
     };
 
-    // Inisialisasi
+    // Inisialisasi waktu aktivitas pertama
     if (!sessionStorage.getItem(LAST_ACTIVITY_KEY)) {
       sessionStorage.setItem(LAST_ACTIVITY_KEY, String(Date.now()));
     }
-    schedule();
 
-    const events: (keyof WindowEventMap)[] = ["mousemove", "mousedown", "keydown", "scroll", "touchstart"];
-    events.forEach((e) => window.addEventListener(e, markActivity, { passive: true }));
+    scheduleLogout();
 
-    const onVisibility = () => {
+    // Event yang dianggap sebagai aktivitas user
+    const events: (keyof WindowEventMap)[] = [
+      "mousemove",
+      "mousedown",
+      "keydown",
+      "scroll",
+      "touchstart",
+    ];
+
+    // Pasang event listener
+    events.forEach((event) =>
+      window.addEventListener(event, markActivity, { passive: true })
+    );
+
+    // Cek idle saat tab aktif kembali
+    const handleVisibilityChange = () => {
       if (document.visibilityState !== "visible") return;
-      const last = Number(sessionStorage.getItem(LAST_ACTIVITY_KEY) || 0);
-      if (last && Date.now() - last > IDLE_MS) logout();
-    };
-    document.addEventListener("visibilitychange", onVisibility);
 
+      const lastActivity = Number(
+        sessionStorage.getItem(LAST_ACTIVITY_KEY) || 0
+      );
+
+      if (lastActivity && Date.now() - lastActivity > IDLE_MS) {
+        logout();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    // Cleanup
     return () => {
-      events.forEach((e) => window.removeEventListener(e, markActivity));
-      document.removeEventListener("visibilitychange", onVisibility);
+      events.forEach((event) =>
+        window.removeEventListener(event, markActivity)
+      );
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
       if (timeoutId) clearTimeout(timeoutId);
     };
   }, [token, logout]);
 
+  /**
+   * ================================
+   * CONTEXT VALUE
+   * ================================
+   */
   const value = useMemo(
-    () => ({ token, user, isLoading, logout }),
+    () => ({
+      token,
+      user,
+      isLoading,
+      logout,
+    }),
     [token, user, isLoading, logout]
   );
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
+/**
+ * ================================
+ * CUSTOM HOOK
+ * ================================
+ */
 export function useAuth() {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth harus dipakai di dalam <AuthProvider />");
-  return ctx;
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error("useAuth harus digunakan di dalam <AuthProvider />");
+  }
+
+  return context;
 }
 
-export const authStorageKeys = { TOKEN_KEY, LAST_ACTIVITY_KEY };
+/**
+ * ================================
+ * EXPORT STORAGE KEYS
+ * ================================
+ */
+export const authStorageKeys = {
+  TOKEN_KEY,
+  LAST_ACTIVITY_KEY,
+};

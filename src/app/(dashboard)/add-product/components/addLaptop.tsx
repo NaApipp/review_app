@@ -1,8 +1,10 @@
 "use client";
 
+// import hooks
 import { useAddLaptop } from "@/app/hooks/useAddLaptop";
 
 export default function AddLaptopPage() {
+  // Hook for connection to API Database
   const {
     platform,
     setPlatform,
@@ -25,6 +27,7 @@ export default function AddLaptopPage() {
   return (
     <>
       <form onSubmit={handleSubmit} className="form-add-product">
+
         {/* Kode Product */}
         <div className="container-field-product">
           <label htmlFor="product_name" className="label-field-product">
@@ -130,6 +133,7 @@ export default function AddLaptopPage() {
             required
           />
         </div>
+        {/* Button Submit */}
         <button
           className="btn-submit-product"
           type="submit"
@@ -137,6 +141,8 @@ export default function AddLaptopPage() {
         >
           Submit
         </button>
+
+        {/* Status after submit */}
         {status && (
           <p
             className="font-bold"

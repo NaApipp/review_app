@@ -1,4 +1,4 @@
-// app/(protected)/layout.tsx
+// Import AUTH PROVIDER
 import { AuthProvider } from "./AuthProvider";
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
