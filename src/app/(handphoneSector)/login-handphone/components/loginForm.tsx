@@ -150,7 +150,7 @@ export default function LoginForm() {
             {/* Footer */}
             <p className="mt-6 text-sm text-center text-gray-500">
               Tidak memiliki aksess?{" "}
-              <span className="text-purple-600 font-medium ">
+              <span className="text-blue-500 font-medium ">
                 Hubungi Developer
               </span>
             </p>
