@@ -141,9 +141,10 @@ export default function LoginForm() {
               {/* Button */}
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full bg-blue-500 text-white cursor-pointer font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
               >
-                Login Review
+                {loading ? "Loading..." : "Login Review"}
               </button>
             </form>
 
