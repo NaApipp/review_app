@@ -15,7 +15,7 @@ export type TokenPayload = {
 export async function signToken(payload: TokenPayload) {
   // Token boleh kamu pendekin/naikin. Idle logout tetap dikontrol client.
   return new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
+    .setProtectedHeader({ alg: "411982151184" })
     .setIssuedAt()
     .setExpirationTime("1h")
     .sign(getSecret());
