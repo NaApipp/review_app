@@ -9,13 +9,13 @@ export default function OnBoardingPage() {
     <>
       <div className="flex flex-col items-center justify-center min-h-screen gap-6 bg-[#1A3E64] text-[#F4F4F4]">
         {/* Headline */}
-        <h1 className="md:text-[1.3rem] text-center font-bold">Selamat Datang Di <span className="text-[#00F7FF] font-extrabold">Laptop</span> Sector</h1>
+        <h1 className="md:text-[1.3rem] text-center font-bold">
+          Selamat Datang Di{" "}
+          <span className="text-[#00F7FF] font-extrabold">Laptop</span> Sector
+        </h1>
         <h1 className="md:text-[10px] text-center mt-5 font-bold">
           <TypeAnimation
-            sequence={[
-              "Silahkan Pilih Menu Login Dibawah",
-              1000,
-            ]}
+            sequence={["Silahkan Pilih Menu Login Dibawah", 1000]}
             wrapper="span"
             speed={50}
             className="text-[13px] font-bold"
@@ -65,7 +65,7 @@ export default function OnBoardingPage() {
               id="icon"
             >
               <svg
-                className="w-10 h-10 text-gray-800 dark:text-white"
+                className="w-6 h-6 text-gray-800 dark:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -73,16 +73,13 @@ export default function OnBoardingPage() {
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6.616l-2.88 2.592C8.537 20.461 7 19.776 7 18.477V17H5a2 2 0 0 1-2-2V6Zm4 2a1 1 0 0 0 0 2h5a1 1 0 1 0 0-2H7Zm8 0a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2Zm-8 3a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2H7Zm5 0a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2h-5Z"
-                  clip-rule="evenodd"
-                />
+                <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
               </svg>
             </div>
             <h1 className="mt-5 font-bold">Login Review</h1>
             <h1 className="mt-5 font-light">
-              Berikan ulasan terbaik Anda dan lihat penilaian pelanggan lain terhadap produk kami.{" "}
+              Berikan ulasan terbaik Anda dan lihat penilaian pelanggan lain
+              terhadap produk kami.{" "}
             </h1>
           </Link>
           <Link
@@ -118,7 +115,12 @@ export default function OnBoardingPage() {
             </h1>
           </Link>
         </div>
-        <Link href={"/on-boarding"} className="bg-white p-5 rounded-2xl font-bold text-[#2b507a] transition-transform duration-300 hover:scale-105">Kembali ke Halaman Utama</Link>
+        <Link
+          href={"/on-boarding"}
+          className="bg-white p-5 rounded-2xl font-bold text-[#2b507a] transition-transform duration-300 hover:scale-105"
+        >
+          Kembali ke Halaman Utama
+        </Link>
       </div>
     </>
   );
