@@ -7,6 +7,8 @@ export type AdminUser = {
 
 export const USERS: AdminUser[] = [
   { username: "langitmerah", password: "kopiSenja27" , role: "admin" },
+
+  // SUPER ADMIN
   { username: "gajahkayang", password: "gajahsulap" , role: "admin" },
 ];
 
