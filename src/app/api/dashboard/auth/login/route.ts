@@ -1,7 +1,7 @@
 // app/api/auth/login/route.ts
 import { NextResponse } from "next/server";
 import { USERS } from "@/app/lib/userReview";
-import { signToken } from "@/app/lib/AuthReview";
+import { signToken } from "@/app/lib/AuthDashboard";
 
 // hanya huruf, angka, underscore, titik (boleh kamu sesuaikan)
 const USERNAME_REGEX = /^[a-zA-Z0-9._]+$/;
