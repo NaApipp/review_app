@@ -86,7 +86,7 @@ export default function OnBoardingPage() {
             </h1>
           </Link>
           <Link
-            href={"/label-review-handphone"}
+            href={"/login-anotator-laptop"}
             className="bg-[#26476C] border border-[#2b507a] rounded-2xl p-5 flex flex-col gap-2 w-80 transition-transform duration-300 hover:scale-110 cursor-pointer"
           >
             <div
