@@ -121,6 +121,7 @@ export default function LoginForm() {
                   type="text"
                   placeholder="Masukkan username..."
                   className="w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
                 />
               </div>
 
@@ -135,6 +136,8 @@ export default function LoginForm() {
                   type="password"
                   placeholder="Masukkan password..."
                   className="w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                  autoComplete="off"
                 />
               </div>
 

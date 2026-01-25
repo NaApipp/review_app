@@ -92,6 +92,7 @@ export default function LoginForm() {
                   className="placeholder:text-gray-400 border border-amber-300 text-sm rounded-2xl block w-full px-3 py-2.5 shadow"
                   placeholder="Password"
                   required
+                  autoComplete="off"
                 />
               </div>
               {/* Button Submit Login */}
