@@ -1,7 +1,14 @@
 // components/AuthProvider.tsx
 "use client";
 
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 const TOKEN_KEY = "demo_auth_token";
@@ -29,7 +36,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = useCallback(async () => {
     try {
-      await fetch("/api/laptop/auth/logout", { method: "POST" });
+      await fetch("/api/anotator-handphone/auth/logout", { method: "POST" });
     } catch {
       // no-op
     }
@@ -39,7 +46,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setToken(null);
     setUser(null);
 
-    if (pathname !== "/login-anotator-handphone") router.replace("/login-anotator-handphone");
+    if (pathname !== "/login-anotator-handphone")
+      router.replace("/login-anotator-handphone");
   }, [pathname, router]);
 
   // Guard + load user
@@ -49,13 +57,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     if (!t) {
       setIsLoading(false);
-      if (pathname !== "/login-anotator-handphone") router.replace("/login-anotator-handphone");
+      if (pathname !== "/login-anotator-handphone")
+        router.replace("/login-anotator-handphone");
       return;
     }
 
     (async () => {
       try {
-        const res = await fetch("/api/laptop/auth/me", {
+        const res = await fetch("/api/anotator-handphone/auth/me", {
           headers: { Authorization: `Bearer ${t}` },
         });
         if (!res.ok) throw new Error("unauthorized");
@@ -94,8 +103,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     schedule();
 
-    const events: (keyof WindowEventMap)[] = ["mousemove", "mousedown", "keydown", "scroll", "touchstart"];
-    events.forEach((e) => window.addEventListener(e, markActivity, { passive: true }));
+    const events: (keyof WindowEventMap)[] = [
+      "mousemove",
+      "mousedown",
+      "keydown",
+      "scroll",
+      "touchstart",
+    ];
+    events.forEach((e) =>
+      window.addEventListener(e, markActivity, { passive: true }),
+    );
 
     const onVisibility = () => {
       if (document.visibilityState !== "visible") return;
@@ -113,7 +130,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo(
     () => ({ token, user, isLoading, logout }),
-    [token, user, isLoading, logout]
+    [token, user, isLoading, logout],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
