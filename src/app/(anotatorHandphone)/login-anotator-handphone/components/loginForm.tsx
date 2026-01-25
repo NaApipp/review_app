@@ -110,7 +110,7 @@ export default function LoginForm() {
 
             {/* Button back to on-boarding page */}
             <Link
-              href="/on-boarding"
+              href="/handphone-sector"
               className="mt-4 bg-[#1D546C] hover:bg-[#1D546C]/60 p-3 rounded-2xl text-white block text-center"
             >
               Kembali ke halaman utama
