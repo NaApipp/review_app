@@ -33,15 +33,19 @@ export function ReviewRow({ review }: { review: Review }) {
         }
       );
 
-      if (!res.ok) throw await res.json();
+      const data = await res.json(); // ✅ SATU KALI SAJA
 
-      const updated = await res.json();
+      if (!res.ok) {
+        throw data;
+      }
 
-      // ✅ SINKRONKAN DENGAN DB
-      setLabel(updated.label);
-      setLabelBy(updated.labelBy);
+      alert("Data berhasil disimpan");
+
+      setLabel(data.label);
+      setLabelBy(data.labelBy);
     } catch (err) {
       console.error("SAVE FAILED:", err);
+      alert("Gagal menyimpan data");
     } finally {
       setSaving(false);
     }

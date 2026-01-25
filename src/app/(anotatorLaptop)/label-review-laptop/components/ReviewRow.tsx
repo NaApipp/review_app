@@ -30,18 +30,22 @@ export function ReviewRow({ review }: { review: Review }) {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ label, labelBy }),
-        }
+        },
       );
 
-      if (!res.ok) throw await res.json();
+      const data = await res.json(); // ✅ SATU KALI SAJA
 
-      const updated = await res.json();
+      if (!res.ok) {
+        throw data;
+      }
 
-      // ✅ SINKRONKAN DENGAN DB
-      setLabel(updated.label);
-      setLabelBy(updated.labelBy);
+      alert("Data berhasil disimpan");
+
+      setLabel(data.label);
+      setLabelBy(data.labelBy);
     } catch (err) {
       console.error("SAVE FAILED:", err);
+      alert("Gagal menyimpan data");
     } finally {
       setSaving(false);
     }
@@ -59,18 +63,24 @@ export function ReviewRow({ review }: { review: Review }) {
           onChange={(e) => setLabel(e.target.value as Review["label"])}
           className="border rounded px-2 py-1 "
         >
-          <option className="text-black bg-amber-300" value="no_action">No Action</option>
-          <option className="text-black bg-red-500" value="fake">Fake</option>
-          <option className="text-black bg-green-500" value="non_fake">No Fake</option>
+          <option className="text-black bg-amber-300" value="no_action">
+            No Action
+          </option>
+          <option className="text-black bg-red-500" value="fake">
+            Fake
+          </option>
+          <option className="text-black bg-green-500" value="non_fake">
+            No Fake
+          </option>
         </select>
       </td>
 
       {/* Field Username */}
       <td className="p-2 text-sm text-gray-600 ">
         <input
-          type="text" 
+          type="text"
           placeholder="Username..."
-          className="bg-[#13202D] p-2 rounded text-white" 
+          className="bg-[#13202D] p-2 rounded text-white"
           value={labelBy}
           onChange={(e) => setLabelBy(e.target.value)}
         />
