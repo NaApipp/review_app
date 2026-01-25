@@ -1,7 +1,9 @@
+import LoginForm from "./components/loginForm";
+
 export default function page() {
     return (
-        <div>
-            login anotator laptop'
-        </div>
+        <>
+          <LoginForm />  
+        </>
     );
 }
