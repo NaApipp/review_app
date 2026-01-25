@@ -130,3 +130,18 @@ export async function POST(req: Request) {
     return errorResponse("Kesalahan server internal", 500);
   }
 }
+
+
+
+export async function GET() {
+  const client = await clientPromise;
+  const db = client.db("review_app");
+
+  const products = await db
+    .collection("reviews_laptop")
+    .find({})
+    .sort({ createdAt: -1 })
+    .toArray();
+
+  return Response.json(products);
+}

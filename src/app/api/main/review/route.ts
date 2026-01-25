@@ -56,7 +56,7 @@ export async function POST(req: Request) {
   if (containsMongoOperator(productId) || containsMongoOperator(reviewer)) {
     return errorResponse("Input tidak valid terdeteksi", 400);
   }
-
+  
   // 4️⃣ Type & empty validation
   if (!isNonEmptyString(productId)) {
     return errorResponse(
@@ -129,4 +129,18 @@ export async function POST(req: Request) {
     console.error("POST /reviews error:", error);
     return errorResponse("Kesalahan server internal", 500);
   }
+}
+
+
+export async function GET() {
+  const client = await clientPromise;
+  const db = client.db("review_app");
+
+  const products = await db
+    .collection("reviews")
+    .find({})
+    .sort({ createdAt: -1 })
+    .toArray();
+
+  return Response.json(products);
 }
