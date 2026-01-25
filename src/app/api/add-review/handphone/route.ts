@@ -69,7 +69,8 @@ export async function POST(request: Request) {
     const docs = products.map((item) => ({
       reviewId: item.reviewId.trim(),
       review: item.review.trim(),
-      status: item.status.trim(),
+      label: item.label.trim(),
+      labelBy: item.labelBy.trim(),
       createdAt: formattedDate,
     }));
 
