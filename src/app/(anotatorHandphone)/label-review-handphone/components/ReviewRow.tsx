@@ -8,63 +8,40 @@ type Review = {
   review: string;
   label: "fake" | "non_fake" | "no_action";
   // labelBy?: string | null;
-  LabelBy: string;
+  labelBy: string;
 };
 
 export function ReviewRow({ review }: { review: Review }) {
-  const { user } = useAuth();
-
-  // Variable For Set Label
   const [label, setLabel] = useState(review.label);
-
-  // Variable For Set LabelBy
-  const [labelBy, setLabelBy] = useState(review.LabelBy);
-
-  // Variable For Saving
+  const [labelBy, setLabelBy] = useState(review.labelBy ?? "");
   const [saving, setSaving] = useState(false);
 
-  const isDirty = label !== review.label;
+  const isDirty = label !== review.label || labelBy !== review.labelBy;
 
   async function handleSave() {
-    // Jika Terjadi Missing Review ID
-    if (!review?.reviewId) {
-      console.error("❌ reviewId MISSING!", review);
-      alert("ERROR: reviewId tidak ada. Cek console.");
-      return;
-    }
-
-    if (!isDirty) return;
+    if (!review.reviewId) return;
 
     setSaving(true);
 
-    // API URL
-    const url = `/api/anotator-handphone/review/${review.reviewId}/label`;
-
-    console.log("PATCH URL:", url);
-    console.log("PATCH BODY:", {
-      label,
-      labelBy,
-    });
-
     try {
-      // Body
-      const res = await fetch(url, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          label,
-          labelBy,
-        }),
-      });
+      const res = await fetch(
+        `/api/anotator-handphone/review/${review.reviewId}/label`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ label, labelBy }),
+        }
+      );
 
-      // Failed Message
-      if (!res.ok) {
-        const err = await res.json();
-        console.error("❌ SAVE FAILED:", err);
-        alert("Gagal save, cek console");
-      }
+      if (!res.ok) throw await res.json();
+
+      const updated = await res.json();
+
+      // ✅ SINKRONKAN DENGAN DB
+      setLabel(updated.label);
+      setLabelBy(updated.labelBy);
     } catch (err) {
-      console.error("❌ FETCH ERROR:", err);
+      console.error("SAVE FAILED:", err);
     } finally {
       setSaving(false);
     }
@@ -80,17 +57,23 @@ export function ReviewRow({ review }: { review: Review }) {
         <select
           value={label}
           onChange={(e) => setLabel(e.target.value as Review["label"])}
-          className="border rounded px-2 py-1"
+          className="border rounded px-2 py-1 "
         >
-          <option value="no_action">No Action</option>
-          <option value="fake">Fake</option>
-          <option value="non_fake">Non Fake</option>
+          <option className="text-black bg-amber-300" value="no_action">No Action</option>
+          <option className="text-black bg-red-500" value="fake">Fake</option>
+          <option className="text-black bg-green-500" value="non_fake">No Fake</option>
         </select>
       </td>
 
       {/* Field Username */}
-      <td className="p-2 text-sm text-gray-600">
-        <input type="text" placeholder="Username..." value={labelBy} onChange={(e) => setLabelBy(e.target.value)} />
+      <td className="p-2 text-sm text-gray-600 ">
+        <input
+          type="text" 
+          placeholder="Username..."
+          className="bg-[#13202D] p-2 rounded text-white" 
+          value={labelBy}
+          onChange={(e) => setLabelBy(e.target.value)}
+        />
       </td>
 
       <td className="p-2">

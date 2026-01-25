@@ -4,14 +4,15 @@ import { ReviewRow } from "./ReviewRow";
 
 export default function ReviewTable({ reviews }: { reviews: any[] }) {
   return (
-    <table className="w-full border">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Review</th>
-          <th>Label</th>
-          <th>Labeled By</th>
-          <th>Action</th>
+    <div className="bg-[#1A3D64]">
+      <table className="w-full border text-center">
+      <thead className="border">
+        <tr className="border">
+          <th className="pt-5 pb-5">Review Id</th>
+          <th className="pt-5 pb-5">Review</th>
+          <th className="pt-5 pb-5">Label</th>
+          <th className="pt-5 pb-5">Labeled By</th>
+          <th className="pt-5 pb-5">Action</th>
         </tr>
       </thead>
 
@@ -24,5 +25,6 @@ export default function ReviewTable({ reviews }: { reviews: any[] }) {
         ))}
       </tbody>
     </table>
+    </div>
   );
 }

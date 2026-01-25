@@ -23,7 +23,7 @@ export default async function Page() {
     })
     .toArray();
   return (
-    <div className="p-6">
+    <div className="p-6 bg-[#1A3D64] min-h-screen">
       <Navbar />
       
       

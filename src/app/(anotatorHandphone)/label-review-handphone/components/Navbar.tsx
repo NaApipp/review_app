@@ -11,7 +11,7 @@ export default function Navbar() {
       <div className="flex justify-between items-center mb-4">
         <h1>Daftar Review Handphone</h1>
         <Link
-          href="/login-admin"
+          href="/login-anotator-handphone"
           onClick={logout}
           className="block py-2 px-3 bg-[#CF0F0F] hover:bg-[#CF0F0F]/60 text-white text-heading rounded hover:bg-neutral-tertiary  md:p-3"
         >
