@@ -70,7 +70,7 @@ export default function LoginForm() {
           </div>
 
           {/* Footer button direct*/}
-          <Link href={"/laptop-sector"} className="flex flex-row w-max rounded-2xl items-center p-2 text-sm text-white/70 bg-blue-500 hover:bg-blue-600 transition-colors">
+          <Link href={"/handphone-sector"} className="flex flex-row w-max rounded-2xl items-center p-2 text-sm text-white/70 bg-blue-500 hover:bg-blue-600 transition-colors">
             <svg
               className="w-8 h-8 text-gray-800 dark:text-white"
               aria-hidden="true"
