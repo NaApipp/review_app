@@ -26,7 +26,7 @@ export default function LoginForm() {
 
     // Fetech API login
     try {
-      const res = await fetch("/api/anotator-handphone/auth/login", {
+      const res = await fetch("/api/anotator-laptop/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),  // with a body username and password
@@ -47,7 +47,7 @@ export default function LoginForm() {
         String(Date.now())
       );
 
-      router.replace("/label-review-handphone");
+      router.replace("/label-review-laptop");
     } finally {
       setLoading(false);
     }
