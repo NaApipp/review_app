@@ -1,16 +1,27 @@
 import ReviewTable from "./components/ReviewTable";
-import clientPromise from "@/app/lib/mongodb";
+import Pagination from "./components/Pagination";
 import Navbar from "./components/Navbar";
+import clientPromise from "@/app/lib/mongodb";
 
-export default async function Page() {
+type PageProps = {
+  searchParams: Promise<{
+    page?: string;
+    limit?: string;
+  }>;
+};
+
+export default async function Page({ searchParams }: PageProps) {
+  // unwrap
+  const params = await searchParams;
+
+  const page = Number(params.page) || 1;
+  const limit = Number(params.limit) || 20;
+  const skip = (page - 1) * limit;
 
   const client = await clientPromise;
-
-  // DB NAME
   const db = client.db("review_app");
 
   const reviews = await db
-  // Table Name
     .collection("anotator_review_laptop")
     .find({})
     .project({
@@ -21,14 +32,27 @@ export default async function Page() {
       labelBy: 1,
       createdAt: 1,
     })
+    .skip(skip)
+    .limit(limit)
     .toArray();
+
+  const totalData = await db
+    .collection("anotator_review_laptop")
+    .countDocuments();
+
+  const totalPages = Math.ceil(totalData / limit);
+
   return (
     <div className="p-6 bg-[#1A3D64] min-h-screen">
       <Navbar />
-      
-      
-      {/* IMport Table */}
+
       <ReviewTable reviews={reviews} />
+
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        limit={limit}
+      />
     </div>
   );
 }
