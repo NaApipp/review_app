@@ -52,8 +52,19 @@ This application is similar to the review system we often find in marketplaces o
 | **MongoDB**      | NoSQL Database                 |
 | **Tailwind CSS** | UI Styling                     |
 | **Context API**  | State Management (Auth)        |
-| **Vercel**       | Deployment                     |
-| **Mongoose**     | MongoDB Package                |
+| **Vercel**       | Deployment                     | 
+
+---
+
+---
+
+## Library Used
+
+| Technology               | Function               |
+| ------------------------ | ---------------------- |
+| **Lucide React+**        | Icon Library           |
+| **react-type-animation** | Creat typing animation |
+| **Mongoose**             | MongoDB Package        |
 
 ---
 
