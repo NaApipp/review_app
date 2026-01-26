@@ -4,6 +4,8 @@ import { link } from "fs";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
 
+import { Shirt } from "lucide-react";
+
 export default function OnBoardingPage() {
   return (
     <>
@@ -74,6 +76,16 @@ export default function OnBoardingPage() {
               </svg>
             </div>
             <h1 className="mt-5 font-bold">Laptop Sector</h1>
+          </Link>
+          {/* Fashion Sector Card */}
+          <Link href={"/coming-soon"} className="bg-[#26476C] border border-[#2b507a] rounded-2xl p-5 flex items-center flex-col w-69 transition-transform duration-300 hover:scale-110 cursor-pointer">
+            <div
+              className="bg-[#305073] w-min flex items-center justify-center border-[#36659b] border rounded-[40%] p-5"
+              id="icon"
+            >
+              <Shirt className="w-10 h-10" />
+            </div>
+            <h1 className="mt-5 font-bold">Fashion Sector</h1>
           </Link>
         </div>
       </div>
