@@ -9,6 +9,28 @@ function errorResponse(message: string, status = 400) {
 }
 
 /* =======================
+   Format date to "DD/MM/YYYY HH:MM:SS"  For Message Date
+======================= */
+function formatDateWIB(date: Date) {
+  const fmt = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Jakarta",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  const parts = fmt.formatToParts(date);
+  const map: Record<string, string> = {};
+  for (const p of parts) map[p.type] = p.value;
+
+  return `${map.day}/${map.month}/${map.year} ${map.hour}:${map.minute}:${map.second}`;
+}
+
+/* =======================
    Validation Helpers
 ======================= */
 function isNonEmptyString(value: any) {
@@ -112,13 +134,16 @@ export async function POST(req: Request) {
       return errorResponse("Produk tidak ditemukan", 404);
     }
 
+    const formattedDate = formatDateWIB(new Date());
+
+
     // 🔟 Insert review
     await db.collection("reviews_laptop").insertOne({
       productId,
       rating,
       review: review.trim(),
       reviewer: reviewer.trim(),
-      createdAt: new Date(),
+      createdAt: formattedDate,
     });
 
     return Response.json(

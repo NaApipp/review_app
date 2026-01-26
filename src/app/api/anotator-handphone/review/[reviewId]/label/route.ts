@@ -3,6 +3,28 @@ import clientPromise from "@/app/lib/mongodb";
 
 const VALID_LABELS = ["fake", "non_fake", "no_action"];
 
+/* =======================
+   Format date to "DD/MM/YYYY HH:MM:SS"  For Message Date
+======================= */
+function formatDateWIB(date: Date) {
+  const fmt = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Jakarta",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  const parts = fmt.formatToParts(date);
+  const map: Record<string, string> = {};
+  for (const p of parts) map[p.type] = p.value;
+
+  return `${map.day}/${map.month}/${map.year} ${map.hour}:${map.minute}:${map.second}`;
+}
+
 export async function PATCH(
   req: Request,
   context: { params: Promise<{ reviewId: string }> }
@@ -28,6 +50,9 @@ export async function PATCH(
     );
   }
 
+      const formattedDate = formatDateWIB(new Date());
+
+
   const client = await clientPromise;
   const db = client.db("review_app");
 
@@ -39,7 +64,7 @@ export async function PATCH(
         $set: {
           label,
           labelBy: labelBy ?? "",
-          labeledAt: new Date(),
+          labeledAt: formattedDate,
         },
       }
     );
