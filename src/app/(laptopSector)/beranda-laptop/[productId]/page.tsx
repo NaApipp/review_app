@@ -153,7 +153,7 @@ export default async function ProductDetailPage({
           <ReviewForm productId={productId} />
           <Link
             href="/beranda-laptop"
-            className="bg-[#0C2B4E] hover:bg-[#0C2B4E]/60 font-bold p-3 m-4 mt-4 rounded-2xl hidden md:block"
+            className="bg-[#0C2B4E] text-white hover:bg-[#0C2B4E]/60 font-bold p-3 m-4 mt-4 rounded-2xl hidden md:block"
           >
             Kembali Ke Beranda
           </Link>
