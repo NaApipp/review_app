@@ -74,7 +74,7 @@ export default function LoginForm() {
                   onChange={(e) => setUsername(e.target.value)}
                   type="text"
                   id="email-alternative"
-                  className="placeholder:text-gray-400 border border-[#444460] text-sm rounded-2xl bg-[#2F304F] block w-full px-3 py-2.5 shadow"
+                  className="placeholder:text-gray-400 border text-white border-[#444460] text-sm rounded-2xl bg-[#2F304F] block w-full px-3 py-2.5 shadow"
                   placeholder="Username"
                   required
                 />
@@ -89,7 +89,7 @@ export default function LoginForm() {
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   id="email-alternative"
-                  className="placeholder:text-gray-400 border border-[#444460] text-sm rounded-2xl bg-[#2F304F] block w-full px-3 py-2.5 shadow"
+                  className="placeholder:text-gray-400 border text-white border-[#444460] text-sm rounded-2xl bg-[#2F304F] block w-full px-3 py-2.5 shadow"
                   placeholder="Password"
                   required
                   autoComplete="off"
