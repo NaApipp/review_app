@@ -52,7 +52,7 @@ export function ReviewRow({ review }: { review: Review }) {
   }
 
   return (
-    <tr className="border-b">
+    <tr className="border-b hover:bg-[#0C2B4E] transition-colors">
       <td className="p-2 text-sm">{review.reviewId}</td>
       <td className="p-2 text-sm">{review.review}</td>
 
