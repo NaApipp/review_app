@@ -2,7 +2,10 @@
 
 A web application to **view products and provide reviews** simply, securely, and modernly.
 
-**Live Demo:**
+**Dev Demo:**
+[https://mini-review-dev.vercel.app/](https://mini-review-dev.vercel.app/)
+
+**Main Website:**
 [https://mini-review-app.vercel.app/](https://mini-review-app.vercel.app/)
 
 ---
@@ -160,12 +163,12 @@ src/
 
 - User login receives a **token**
 - Token is stored in **sessionStorage**
-- User data is fetched from `/api/main/auth/me` endpoint
+- User data is fetched from `/api/..../auth/me` endpoint
 - Certain pages are protected by **Protected Layout**
 - If user is inactive for 15 minutes → **auto logout**
 
 All processes run automatically in the background.
-
+ 
 ---
 
 ## API Endpoints Handphone Sector
