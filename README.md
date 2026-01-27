@@ -55,7 +55,7 @@ This application is similar to the review system we often find in marketplaces o
 | **MongoDB**      | NoSQL Database                 |
 | **Tailwind CSS** | UI Styling                     |
 | **Context API**  | State Management (Auth)        |
-| **Vercel**       | Deployment                     | 
+| **Vercel**       | Deployment                     |
 
 ---
 
@@ -168,7 +168,7 @@ src/
 - If user is inactive for 15 minutes → **auto logout**
 
 All processes run automatically in the background.
- 
+
 ---
 
 ## API Endpoints Handphone Sector
@@ -184,6 +184,7 @@ All processes run automatically in the background.
 | `/api/main/review`              | POST   | Add review                  |
 | `/api/dashboard/product`        | POST   | Add Product                 |
 
+
 ## API Endpoints Laptop Sector
 
 | Endpoint                          | Method | Function                    |
@@ -196,6 +197,19 @@ All processes run automatically in the background.
 | `/api/laptop/review`              | GET    | Get reviews                 |
 | `/api/laptop/review`              | POST   | Add review                  |
 
+## API Endpoints Fashion Sector
+
+| Endpoint                           | Method | Function                    |
+| ---------------------------------- | ------ | --------------------------- |
+| `/api/fashion/auth/login`          | POST   | Login user                  |
+| `/api/fashion/auth/logout`         | POST   | Logout user                 |
+| `/api/fashion/auth/me`             | GET    | Get user data               |
+| `/api/fashion/product`             | GET    | Get product list            |
+| `/api/fashion/product/[productId]` | GET    | Get Detail product & Review |
+| `/api/fashion/review`              | GET    | Get reviews                 |
+| `/api/fashion/review`              | POST   | Add review                  |
+
+
 ## API Endpoints Anotator Handphone Sector
 
 | Endpoint                                          | Method | Function       |
@@ -205,6 +219,7 @@ All processes run automatically in the background.
 | `/api/anotator-handphone/auth/me`                 | GET    | Get user data  |
 | `/api/anotator-handphone/get-all-review`          | GET    | Get ALL Review |
 | `/api/anotator-handphone/review/[reviewId]/label` | PATCH  | quesioner      |
+
 
 ## API Endpoints Anotator Laptop Sector
 
@@ -216,12 +231,25 @@ All processes run automatically in the background.
 | `/api/anotator-laptop/get-all-review`          | GET    | Get ALL Review |
 | `/api/anotator-laptop/review/[reviewId]/label` | PATCH  | quesioner      |
 
+
+## API Endpoints Anotator Laptop Sector
+
+| Endpoint                                        | Method | Function       |
+| ----------------------------------------------- | ------ | -------------- |
+| `/api/anotator-fashion/auth/login`              | POST   | Login user     |
+| `/api/anotator-fashion/auth/logout`             | POST   | Logout user    |
+| `/api/anotator-fashion/auth/me`                 | GET    | Get user data  |
+| `/api/anotator-fashion/get-all-review`          | GET    | Get ALL Review |
+| `/api/anotator-fashion/review/[reviewId]/label` | PATCH  | quesioner      |
+
+
 ## API Universal / General
 
 | Endpoint                    | Method | Function                                          |
 | --------------------------- | ------ | ------------------------------------------------- |
 | `/api/add-review/laptop`    | POST   | Add Review Data for anotator Laptop Sector        |
 | `/api/add-review/handphone` | POST   | Add Review Data for anotator Handphone Sector     |
+| `/api/add-review/fashion`   | POST   | Add Review Data for anotator Fashion Sector       |
 | `/api/dashboard/product`    | POST   | Add Data product for user review Handphone Sector |
 | `/api/dashboard/laptop`     | POST   | Add Data product for user review Handphone Sector |
 
