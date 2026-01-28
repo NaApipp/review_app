@@ -101,7 +101,7 @@ export default function LoginForm() {
         </div>
 
         {/* RIGHT SIDE – LOGIN FORM */}
-        <div className="flex items-center justify-center px-6">
+        <div className="flex items-center justify-center px-6 bg-gradient-to-br from-[#0F2854] to-[#1C4D8D]">
           <div className="w-full max-w-md">
             {/* Header */}
             <div className="mb-8">
