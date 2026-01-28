@@ -88,11 +88,12 @@ src/
  │   │   └── label-review-laptop/
  │   │   |   ├── page.tsx             # Product list + pagination
  │   │   |   └── components/
- │   │   |       └── Navbar.tsx       # Header + logout
- │   │   |       └── ReviewRow.tsx    # Header + logout
- │   │   |       └── ReviewTable.tsx  # Header + logout
+ │   │   |       └── Pagination.tsx   # Pagination Component
+ │   │   |       └── Navbar.tsx       # Navbar Component
+ │   │   |       └── ReviewRow.tsx    # Table Row Component (From Database)
+ │   │   |       └── ReviewTable.tsx  # Table Component
  │   │   └── login-handphone/
- │   │       ├── page.tsx             # Product list + pagination
+ │   │       ├── page.tsx             # Login form view
  │   │       └── components/
  │   │           └── loginForm.tsx    # login Form
  │   │
@@ -101,11 +102,26 @@ src/
  │   │   └── label-review-laptop/
  │   │   |   ├── page.tsx                # Product list + pagination
  │   │   |   └── components/
- │   │   |       └── Navbar.tsx          # Header + logout
- │   │   |       └── ReviewRow.tsx       # Header + logout
- │   │   |       └── ReviewTable.tsx     # Header + logout
+ │   │   |       └── Pagination.tsx      # Pagination Component
+ │   │   |       └── Navbar.tsx          # Navbar Component
+ │   │   |       └── ReviewRow.tsx       # Table Row Component (From Database)
+ │   │   |       └── ReviewTable.tsx     # Table Component
  │   │   └── login-anotator-laptop/
- │   │       ├── page.tsx                # Product list + pagination
+ │   │       ├── page.tsx                # Login form view
+ │   │       └── components/
+ │   │           └── loginForm.tsx       # login Form
+ │   │
+ │   │
+ │   ├── (Anotatorfashion)/
+ │   │   └── label-review-fashion/
+ │   │   |   ├── page.tsx                # Product list + pagination
+ │   │   |   └── components/
+ │   │   |       └── Pagination.tsx      # Pagination Component
+ │   │   |       └── Navbar.tsx          # Navbar Component
+ │   │   |       └── ReviewRow.tsx       # Table Row Component (From Database)
+ │   │   |       └── ReviewTable.tsx     # Table Component
+ │   │   └── login-anotator-fashion/
+ │   │       ├── page.tsx                # Login form view
  │   │       └── components/
  │   │           └── loginForm.tsx       # login Form
  │   │
@@ -124,35 +140,74 @@ src/
  │   │           └── loginForm.tsx    # login Form
  │   │
  │   │
+ │   ├── (fashionSector)/
+ │   │   └── beranda-fashion/
+ │   │   |   ├── page.tsx             # Product list + pagination
+ │   │   |   ├── [productId]/
+ │   │   |   |   └── page.tsx         # Product details & import reviews form
+ │   │   |   |   └── ReviewForm.tsx   # Reviews product Form
+ │   │   |   └── components/
+ │   │   |       └── Header.tsx       # Header + logout
+ │   │   └── login-fashion/
+ │   │       ├── page.tsx             # Product list + pagination
+ │   │       └── components/
+ │   │           └── loginForm.tsx    # login Form
+ │   │
+ │   │
  │   ├── (laptopSector)/
- │       └── beranda-laptop/
- │       |   ├── page.tsx             # Product list + pagination
- │       |   ├── [productId]/
- │       |   |   └── page.tsx         # Product details & import reviews form
- │       |   |   └── ReviewForm.tsx   # Reviews product Form
- │       |   └── components/
- │       |       └── Header.tsx       # Header + logout
- │       └── login-laptop/
- │           ├── page.tsx             # Product list + pagination
- │           └── components/
- │               └── loginForm.tsx    # login Form
- │
- │
- │
- ├── hooks/
- │   └── useAddProduct.ts             # Manage State and side effect
- │   └── useAddLaptop.ts              # Manage State and side effect
- │
- ├── lib/
- │   └── mongodb.ts                     # MongoDB Connection
- │   └── userAdmin.ts                   # Hardcore data user admin
- │   └── userAnotator.ts                # Hardcore data user anotator
- │   └── userReview.ts                  # Hardcore data user Reviewer
- │
- ├── models/                          # Data validation when retrieving/saving
- │   └── Products.ts
- │   └── Reviews.ts
- │
+ │   |   └── beranda-laptop/
+ │   |   |   ├── page.tsx             # Product list + pagination
+ │   |   |   ├── [productId]/
+ │   |   |   |   └── page.tsx         # Product details & import reviews form
+ │   |   |   |   └── ReviewForm.tsx   # Reviews product Form
+ │   |   |   └── components/
+ │   |   |       └── Header.tsx       # Header + logout
+ │   |   └── login-laptop/
+ │   |       ├── page.tsx             # Product list + pagination
+ │   |       └── components/
+ │   |           └── loginForm.tsx    # login Form
+ │   |
+ │   |
+ │   |
+ |   ├── hooks/
+ |   │   └── useAddProduct.ts             # Manage State and side effect
+ |   │   └── useAddLaptop.ts              # Manage State and side effect
+ |   │
+ |   ├── lib/
+ |   │   └── AuthAnotator.ts              # set JWT and set Expired JWT
+ |   │   └── AuthDashboard.ts             # set JWT and set Expired JWT
+ |   │   └── AuthReview.ts                # set JWT and set Expired JWT
+ |   │   └── mongodb.ts                   # MongoDB Connection
+ |   │   └── userAdmin.ts                 # Hardcore data user admin
+ |   │   └── userAnotator.ts              # Hardcore data user anotator
+ |   │   └── userReview.ts                # Hardcore data user Reviewer
+ |   │
+ |   ├── laptop-sector/                   # On Boarding Route Page For (HANDPHONE)
+ |   │   
+ |   │
+ |   ├── handphone-sector/                # On Boarding Route Page For (LAPTOP)
+ |   │   
+ |   │
+ |   ├── fashion-sector/                  # On Boarding Route Page For (fASHION)
+ |   │   
+ |   │
+ |   ├── models/                          # Data validation when retrieving/saving for (HANDPHONE)
+ |   │   └── Products.ts
+ |   │   └── Reviews.ts
+ |   │
+ |   ├── model-laptop/                   # Data validation when retrieving/saving for (LAPTOP)
+ |   │   └── Products.ts
+ |   │   └── Reviews.ts
+ |   │
+ |   ├── model-fashion/                   # Data validation when retrieving/saving for (fASHION)
+ |   │   └── Products.ts
+ |   │   └── Reviews.ts
+ |   │
+ |   │
+ |   ├── model-anotator/                  # Data validation when retrieving/saving for (OFF / NOT FUNCTION)
+ |   │   
+ |   │
+ |   ├── not-found.tsx                    # Not Found page (404)
  │
  └── public/
 ```
@@ -184,7 +239,6 @@ All processes run automatically in the background.
 | `/api/main/review`              | POST   | Add review                  |
 | `/api/dashboard/product`        | POST   | Add Product                 |
 
-
 ## API Endpoints Laptop Sector
 
 | Endpoint                          | Method | Function                    |
@@ -209,7 +263,6 @@ All processes run automatically in the background.
 | `/api/fashion/review`              | GET    | Get reviews                 |
 | `/api/fashion/review`              | POST   | Add review                  |
 
-
 ## API Endpoints Anotator Handphone Sector
 
 | Endpoint                                          | Method | Function       |
@@ -219,7 +272,6 @@ All processes run automatically in the background.
 | `/api/anotator-handphone/auth/me`                 | GET    | Get user data  |
 | `/api/anotator-handphone/get-all-review`          | GET    | Get ALL Review |
 | `/api/anotator-handphone/review/[reviewId]/label` | PATCH  | quesioner      |
-
 
 ## API Endpoints Anotator Laptop Sector
 
@@ -231,7 +283,6 @@ All processes run automatically in the background.
 | `/api/anotator-laptop/get-all-review`          | GET    | Get ALL Review |
 | `/api/anotator-laptop/review/[reviewId]/label` | PATCH  | quesioner      |
 
-
 ## API Endpoints Anotator Laptop Sector
 
 | Endpoint                                        | Method | Function       |
@@ -241,7 +292,6 @@ All processes run automatically in the background.
 | `/api/anotator-fashion/auth/me`                 | GET    | Get user data  |
 | `/api/anotator-fashion/get-all-review`          | GET    | Get ALL Review |
 | `/api/anotator-fashion/review/[reviewId]/label` | PATCH  | quesioner      |
-
 
 ## API Universal / General
 
