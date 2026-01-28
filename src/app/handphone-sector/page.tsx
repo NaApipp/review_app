@@ -110,10 +110,8 @@ export default function OnBoardingPage() {
             </div>
             <h1 className="mt-5 font-bold">Anotator</h1>
             <h1 className="mt-5 font-light">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-              distinctio nulla explicabo sint repudiandae! Velit est explicabo
-              delectus et, corrupti vero debitis id quaerat, laudantium nesciunt
-              eum enim minima eius!i.{" "}
+              Kelola anotasi dan keterangan data guna mendukung proses evaluasi
+              dan pengambilan keputusan.{" "}
             </h1>
           </Link>
         </div>
