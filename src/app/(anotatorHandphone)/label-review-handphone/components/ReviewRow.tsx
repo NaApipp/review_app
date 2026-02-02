@@ -64,8 +64,8 @@ export function ReviewRow({ review }: { review: Review }) {
           className="border rounded px-2 py-1 "
         >
           <option className="text-black bg-amber-300" value="no_action">No Action</option>
-          <option className="text-black bg-red-500" value="fake">Fake</option>
-          <option className="text-black bg-green-500" value="non_fake">No Fake</option>
+          <option className="text-black bg-red-500" value="fake">Palsu</option>
+          <option className="text-black bg-green-500" value="non_fake">Asli</option>
         </select>
       </td>
 
