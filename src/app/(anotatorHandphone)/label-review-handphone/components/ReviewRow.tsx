@@ -77,6 +77,7 @@ export function ReviewRow({ review }: { review: Review }) {
           className="bg-[#13202D] p-2 rounded text-white" 
           value={labelBy}
           onChange={(e) => setLabelBy(e.target.value)}
+          required
         />
       </td>
 
