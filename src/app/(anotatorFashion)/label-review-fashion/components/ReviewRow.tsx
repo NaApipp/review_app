@@ -67,10 +67,10 @@ export function ReviewRow({ review }: { review: Review }) {
             No Action
           </option>
           <option className="text-black bg-red-500" value="fake">
-            Fake
+            Palsu
           </option>
           <option className="text-black bg-green-500" value="non_fake">
-            No Fake
+            Asli
           </option>
         </select>
       </td>
