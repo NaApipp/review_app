@@ -66,14 +66,14 @@ export default function LoginForm() {
             <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
               <MessageSquareText />
             </div>
-            <span className="font-semibold text-lg">Portal Login</span>
+            <span className="font-semibold text-lg">Portal Login User V2</span>
           </div>
 
           {/* Content */}
           <div>
             <h1 className="text-4xl font-bold leading-tight">
               Anotator Review Product
-              <br /> Sector Handphone.
+              <br /> Sector Handphone V2.
             </h1>
             <p className="mt-4 max-w-md text-white/80">
               Berikan penilaian Anda dan bantu tingkatkan kualitas layanan kami pada
@@ -115,7 +115,7 @@ export default function LoginForm() {
             {/* Header */}
             <div className="mb-8">
               <h2 className="text-3xl font-bold mt-2">Anotator Portal Login <br />
-               <span className="text-[#00F7FF] font-semibold">Sector Handphone</span>
+               <span className="text-[#00F7FF] font-semibold">Sector Handphone V2</span>
               </h2>
             </div>
 
