@@ -1,6 +1,7 @@
 // app/api/auth/login/route.ts
 import { NextResponse } from "next/server";
-import { USERS } from "@/app/lib/userAnotator";
+// import { USERS } from "@/app/lib/userAnotator";
+import { USERS } from "@/app/lib/userAnotatorV2";
 import { signToken } from "@/app/lib/AuthAnotator";
 
 // hanya huruf, angka, underscore, titik (boleh kamu sesuaikan)
@@ -14,7 +15,7 @@ export async function POST(req: Request) {
   } catch {
     return NextResponse.json(
       { error: "Body request tidak valid (JSON diperlukan)" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -25,7 +26,7 @@ export async function POST(req: Request) {
   if (!username || !password) {
     return NextResponse.json(
       { error: "Username dan password wajib diisi" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
         error:
           "Username tidak valid. Gunakan hanya huruf, angka, titik (.) atau underscore (_)",
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -46,16 +47,13 @@ export async function POST(req: Request) {
   if (!userByUsername) {
     return NextResponse.json(
       { error: "Username tidak ditemukan" },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
   // 5️⃣ Cek password
   if (userByUsername.password !== password) {
-    return NextResponse.json(
-      { error: "Password salah" },
-      { status: 401 }
-    );
+    return NextResponse.json({ error: "Password salah" }, { status: 401 });
   }
 
   // 6️⃣ Generate token
@@ -74,6 +72,6 @@ export async function POST(req: Request) {
         role: userByUsername.role,
       },
     },
-    { status: 200 }
+    { status: 200 },
   );
 }

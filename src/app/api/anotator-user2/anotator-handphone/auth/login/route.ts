@@ -1,6 +1,6 @@
 // app/api/auth/login/route.ts
 import { NextResponse } from "next/server";
-import { USERS } from "@/app/lib/userAnotator";
+import { USERS } from "@/app/lib/userAnotatorV2";
 import { signToken } from "@/app/lib/AuthAnotator";
 
 // hanya huruf, angka, underscore, titik (boleh kamu sesuaikan)
