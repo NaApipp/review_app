@@ -13,7 +13,7 @@ export async function GET() {
       reviewId: 1,
       review: 1,
       label: 1,
-      labeledBy: 1,
+      labelBy: 1,
     })
     .toArray();
 
