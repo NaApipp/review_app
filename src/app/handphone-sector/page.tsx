@@ -23,7 +23,7 @@ export default function OnBoardingPage() {
             repeat={Infinity}
           />
         </h1>
-        <div className="flex gap-7 md:mt-0 mt-7">
+        <div className="grid grid-cols-2 gap-7 md:mt-0 mt-7">
           {/* Dashboard Card */}
           <Link
             href={"/login-admin"}
@@ -109,6 +109,36 @@ export default function OnBoardingPage() {
               </svg>
             </div>
             <h1 className="mt-5 font-bold">Anotator</h1>
+            <h1 className="mt-5 font-light">
+              Kelola anotasi dan keterangan data guna mendukung proses evaluasi
+              dan pengambilan keputusan.{" "}
+            </h1>
+          </Link>
+          <Link
+            href={"/login-anotator-handphone-v2"}
+            className="bg-[#26476C] border border-[#2b507a] rounded-2xl p-5 flex flex-col gap-2 w-80 transition-transform duration-300 hover:scale-110 cursor-pointer"
+          >
+            <div
+              className="bg-[#305073] w-min flex items-center justify-center border-[#36659b] border rounded-[40%] p-5"
+              id="icon"
+            >
+              <svg
+                className="w-6 h-6 text-white dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3.559 4.544c.355-.35.834-.544 1.33-.544H19.11c.496 0 .975.194 1.33.544.356.35.559.829.559 1.331v9.25c0 .502-.203.981-.559 1.331-.355.35-.834.544-1.33.544H15.5l-2.7 3.6a1 1 0 0 1-1.6 0L8.5 17H4.889c-.496 0-.975-.194-1.33-.544A1.868 1.868 0 0 1 3 15.125v-9.25c0-.502.203-.981.559-1.331ZM7.556 7.5a1 1 0 1 0 0 2h8a1 1 0 0 0 0-2h-8Zm0 3.5a1 1 0 1 0 0 2H12a1 1 0 1 0 0-2H7.556Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <h1 className="mt-5 font-bold">Anotator User 2</h1>
             <h1 className="mt-5 font-light">
               Kelola anotasi dan keterangan data guna mendukung proses evaluasi
               dan pengambilan keputusan.{" "}
