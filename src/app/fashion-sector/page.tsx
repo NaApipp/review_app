@@ -145,7 +145,7 @@ export default function OnBoardingPage() {
         </div>
         <Link
           href={"/on-boarding"}
-          className="bg-white p-5 rounded-2xl font-bold text-[#2b507a] transition-transform duration-300 hover:scale-105"
+          className="bg-white p-5 rounded-2xl font-bold text-[#2b507a] transition-transform duration-300 hover:scale-105 mb-3"
         >
           Kembali ke Halaman Utama
         </Link>
