@@ -10,6 +10,7 @@ export default function Navbar() {
     <>
       <div className="flex justify-between items-center mb-4">
         <h1>Daftar Review Laptop</h1>
+        <h1 className="font-extrabold">Anotator Review Sector Fashion V1</h1>
         <Link
           href="/login-anotator-fashion"
           onClick={logout}
