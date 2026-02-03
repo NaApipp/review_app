@@ -108,7 +108,7 @@ export default function OnBoardingPage() {
                 />
               </svg>
             </div>
-            <h1 className="mt-5 font-bold">Anotator</h1>
+            <h1 className="mt-5 font-bold">Anotator User 1</h1>
             <h1 className="mt-5 font-light">
               Kelola anotasi dan keterangan data guna mendukung proses evaluasi
               dan pengambilan keputusan.{" "}
