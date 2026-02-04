@@ -211,9 +211,13 @@ src/
  │   └── useAddLaptop.ts              # Manage State and side effect
  │
  ├── lib/
+ │   └── AuthAnotator.ts                # Authentication Logic For Anotator 
+ │   └── AuthDashboard.ts               # Authentication Logic For Admin
+ │   └── AuthReview.ts                  # Authentication Logic For User
  │   └── mongodb.ts                     # MongoDB Connection
  │   └── userAdmin.ts                   # Hardcore data user admin
- │   └── userAnotator.ts                # Hardcore data user anotator
+ │   └── userAnotatorV2.ts              # Hardcore data user anotator V2
+ │   └── userAnotator.ts                # Hardcore data user anotator V1
  │   └── userReview.ts                  # Hardcore data user Reviewer
  │
  ├── models/                          # Data validation when retrieving/saving
