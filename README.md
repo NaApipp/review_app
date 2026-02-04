@@ -84,7 +84,46 @@ src/
  │   │       └── page.tsx             # Add Prouct From
  │   │
  │   │
+ │   ├── (Anotatorfashion)/
+ │   │   └── label-review-fashion/
+ │   │   |   ├── page.tsx             # Product list + pagination
+ │   │   |   └── components/
+ │   │   |       └── Navbar.tsx       # Header + logout
+ │   │   |       └── ReviewRow.tsx    # Header + logout
+ │   │   |       └── ReviewTable.tsx  # Header + logout
+ │   │   └── login-handphone/
+ │   │       ├── page.tsx             # Product list + pagination
+ │   │       └── components/
+ │   │           └── loginForm.tsx    # login Form
+ │   │
+ │   │
+ │   ├── (AnotatorfashionUser2)/
+ │   │   └── label-review-fashion/
+ │   │   |   ├── page.tsx             # Product list + pagination
+ │   │   |   └── components/
+ │   │   |       └── Navbar.tsx       # Header + logout
+ │   │   |       └── ReviewRow.tsx    # Header + logout
+ │   │   |       └── ReviewTable.tsx  # Header + logout
+ │   │   └── login-handphone/
+ │   │       ├── page.tsx             # Product list + pagination
+ │   │       └── components/
+ │   │           └── loginForm.tsx    # login Form
+ │   │
+ │   │
  │   ├── (Anotatorlaptop)/
+ │   │   └── label-review-laptop/
+ │   │   |   ├── page.tsx             # Product list + pagination
+ │   │   |   └── components/
+ │   │   |       └── Navbar.tsx       # Header + logout
+ │   │   |       └── ReviewRow.tsx    # Header + logout
+ │   │   |       └── ReviewTable.tsx  # Header + logout
+ │   │   └── login-handphone/
+ │   │       ├── page.tsx             # Product list + pagination
+ │   │       └── components/
+ │   │           └── loginForm.tsx    # login Form
+ │   │
+ │   │
+ │   ├── (AnotatorlaptopUser2)/
  │   │   └── label-review-laptop/
  │   │   |   ├── page.tsx             # Product list + pagination
  │   │   |   └── components/
@@ -110,6 +149,19 @@ src/
  │   │           └── loginForm.tsx       # login Form
  │   │
  │   │
+ │   ├── (AnotatorlaptopuUser2)/
+ │   │   └── label-review-laptop/
+ │   │   |   ├── page.tsx                # Product list + pagination
+ │   │   |   └── components/
+ │   │   |       └── Navbar.tsx          # Header + logout
+ │   │   |       └── ReviewRow.tsx       # Header + logout
+ │   │   |       └── ReviewTable.tsx     # Header + logout
+ │   │   └── login-anotator-laptop/
+ │   │       ├── page.tsx                # Product list + pagination
+ │   │       └── components/
+ │   │           └── loginForm.tsx       # login Form
+ │   │
+ │   │
  │   ├── (handphoneSector)/
  │   │   └── beranda-handphone/
  │   │   |   ├── page.tsx             # Product list + pagination
@@ -119,6 +171,21 @@ src/
  │   │   |   └── components/
  │   │   |       └── Header.tsx       # Header + logout
  │   │   └── login-handphone/
+ │   │       ├── page.tsx             # Product list + pagination
+ │   │       └── components/
+ │   │           └── loginForm.tsx    # login Form
+ │   │
+ │   │
+ │   │
+ │   ├── (fashionSector)/
+ │   │   └── beranda-fashion/
+ │   │   |   ├── page.tsx             # Product list + pagination
+ │   │   |   ├── [productId]/
+ │   │   |   |   └── page.tsx         # Product details & import reviews form
+ │   │   |   |   └── ReviewForm.tsx   # Reviews product Form
+ │   │   |   └── components/
+ │   │   |       └── Header.tsx       # Header + logout
+ │   │   └── login-fashion/
  │   │       ├── page.tsx             # Product list + pagination
  │   │       └── components/
  │   │           └── loginForm.tsx    # login Form
@@ -210,7 +277,7 @@ All processes run automatically in the background.
 | `/api/fashion/review`              | POST   | Add review                  |
 
 
-## API Endpoints Anotator Handphone Sector
+## API Endpoints Anotator Handphone Sector User 1
 
 | Endpoint                                          | Method | Function       |
 | ------------------------------------------------- | ------ | -------------- |
@@ -221,7 +288,7 @@ All processes run automatically in the background.
 | `/api/anotator-handphone/review/[reviewId]/label` | PATCH  | quesioner      |
 
 
-## API Endpoints Anotator Laptop Sector
+## API Endpoints Anotator Laptop Sector User 1
 
 | Endpoint                                       | Method | Function       |
 | ---------------------------------------------- | ------ | -------------- |
@@ -232,7 +299,7 @@ All processes run automatically in the background.
 | `/api/anotator-laptop/review/[reviewId]/label` | PATCH  | quesioner      |
 
 
-## API Endpoints Anotator Laptop Sector
+## API Endpoints Anotator Laptop Sector User 1
 
 | Endpoint                                        | Method | Function       |
 | ----------------------------------------------- | ------ | -------------- |
@@ -243,60 +310,68 @@ All processes run automatically in the background.
 | `/api/anotator-fashion/review/[reviewId]/label` | PATCH  | quesioner      |
 
 
+## API Endpoints Anotator Handphone Sector User 2
+
+| Endpoint                                                         | Method | Function       |
+| ---------------------------------------------------------------- | ------ | -------------- |
+| `/api/anotator-user2/anotator-handphone/auth/login`              | POST   | Login user     |
+| `/api/anotator-user2/anotator-handphone/auth/logout`             | POST   | Logout user    |
+| `/api/anotator-user2/anotator-handphone/auth/me`                 | GET    | Get user data  |
+| `/api/anotator-user2/anotator-handphone/get-all-review`          | GET    | Get ALL Review |
+| `/api/anotator-user2/anotator-handphone/review/[reviewId]/label` | PATCH  | quesioner      |
+
+
+## API Endpoints Anotator Laptop Sector User 2
+
+| Endpoint                                                      | Method | Function       |
+| ------------------------------------------------------------- | ------ | -------------- |
+| `/api/anotator-user2/anotator-laptop/auth/login`              | POST   | Login user     |
+| `/api/anotator-user2/anotator-laptop/auth/logout`             | POST   | Logout user    |
+| `/api/anotator-user2/anotator-laptop/auth/me`                 | GET    | Get user data  |
+| `/api/anotator-user2/anotator-laptop/get-all-review`          | GET    | Get ALL Review |
+| `/api/anotator-user2/anotator-laptop/review/[reviewId]/label` | PATCH  | quesioner      |
+
+
+## API Endpoints Anotator Laptop Sector User 2
+
+| Endpoint                                                       | Method | Function       |
+| -------------------------------------------------------------- | ------ | -------------- |
+| `/api/anotator-user2/anotator-fashion/auth/login`              | POST   | Login user     |
+| `/api/anotator-user2/anotator-fashion/auth/logout`             | POST   | Logout user    |
+| `/api/anotator-user2/anotator-fashion/auth/me`                 | GET    | Get user data  |
+| `/api/anotator-user2/anotator-fashion/get-all-review`          | GET    | Get ALL Review |
+| `/api/anotator-user2/anotator-fashion/review/[reviewId]/label` | PATCH  | quesioner      |
+
+
 ## API Universal / General
 
-| Endpoint                    | Method | Function                                          |
-| --------------------------- | ------ | ------------------------------------------------- |
-| `/api/add-review/laptop`    | POST   | Add Review Data for anotator Laptop Sector        |
-| `/api/add-review/handphone` | POST   | Add Review Data for anotator Handphone Sector     |
-| `/api/add-review/fashion`   | POST   | Add Review Data for anotator Fashion Sector       |
-| `/api/dashboard/product`    | POST   | Add Data product for user review Handphone Sector |
-| `/api/dashboard/laptop`     | POST   | Add Data product for user review Handphone Sector |
+| Endpoint                          | Method | Function                                                 |
+| --------------------------------- | ------ | -------------------------------------------------------- |
+| `/api/add-review/laptop`          | POST   | Add Review Data for anotator Laptop Sector               |
+| `/api/add-review/handphone`       | POST   | Add Review Data for anotator Handphone Sector            |
+| `/api/add-review/fashion`         | POST   | Add Review Data for anotator Fashion Sector              |
+| `/api/dashboard/product`          | POST   | Add Data product for user review Handphone Sector        |
+| `/api/dashboard/laptop`           | POST   | Add Data product for user review Handphone Sector        |
+| `/api/add-review-user2/laptop`    | POST   | Add Review Data for anotator user 2 Laptop Sector        |
+| `/api/add-review-user2/handphone` | POST   | Add Review Data for anotator user 2 Handphone Sector     |
+| `/api/add-review-user2/fashion`   | POST   | Add Review Data for anotator user 2 Fashion Sector       |
 
 ---
 
-## How to Run Project (Req Main Developer)
+## New Commit Format
+type (scope/halaman "optional") : Description
 
-<!-- ### 1️⃣ Clone Repository
+option For (type)
 
-```bash
-git clone https://github.com/NaApipp/review_app.git
-cd review_app
-```
+- feat: untuk menambahkan fitur baru
+- fix: untuk memperbaiki bug
+- docs: untuk memperbarui dokumentasi
+- style: untuk memperbaiki format atau gaya code
+- refactor: untuk merubah penulisan atau memperbaiki
+- test: untuk menambahkan atau memperbaiki test
+- chore: mengatur task atau perubahan konfigurasi
 
-### 2️⃣ Install Dependency
-
-```bash
-npm install
-```
-
-### 3️⃣ Setup Environment
-
-Create `.env.local` file
-
-```env
-MONGODB_URI=your_mongodb_connection_string
-```
-
-### 4️⃣ Run Development Server
-
-```bash
-npm run dev
-```
-
-Buka browser:
-
-```
-http://localhost:3000
-``` -->
-
----
-
-## Pagination
-
-- Displays **9 products per page**
-- **Next & Previous** buttons
-- Buttons automatically disabled on first or last page
+**Example :** feat (navbar): add dropdown menu
 
 ---
 
