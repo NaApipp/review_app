@@ -8,6 +8,7 @@ export type AnotatorUserV2 = {
 export const USERS: AnotatorUserV2[] = [
   // { username: "pandan_wangi", password: "daunHijau45" , role: "anotator" },
   { username: "cakrawala_id", password: "langitBiru90" , role: "anotator" },
+  { username: "sawah_hijau", password: "padiMenguning3" , role: "anotator" },
 
   // SUPER ADMIN
   { username: "gajahkayang", password: "gajahsulap" , role: "anotator" },
