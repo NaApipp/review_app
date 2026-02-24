@@ -155,12 +155,39 @@ export default function LoginForm() {
             </form>
 
             {/* Footer */}
-            <p className="mt-6 text-sm text-center text-gray-500">
+            <div className="flex flex-col items-center">
+              <p className="mt-6 text-sm text-center text-gray-500">
               Tidak memiliki aksess?{" "}
               <span className="text-blue-500 font-medium ">
                 Hubungi Developer
               </span>
             </p>
+            <Link href={"/laptop-sector"} className="md:hidden mt-4 flex flex-row w-max rounded-2xl items-center p-2 text-sm text-white/70 bg-blue-500 hover:bg-blue-600 transition-colors">
+            <svg
+              className="w-8 h-8 text-white dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 12h14M5 12l4-4m-4 4 4 4"
+              />
+            </svg>
+
+            <p
+              className="  text-white cursor-pointer font-semibold py-2 px-4 rounded-md "
+            >
+              Kembali
+            </p>
+          </Link>
+            </div>
           </div>
         </div>
       </div>

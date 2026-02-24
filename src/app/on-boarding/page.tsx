@@ -11,7 +11,7 @@ export default function OnBoardingPage() {
     <>
       <div className="flex flex-col items-center justify-center min-h-screen gap-6 bg-[#1A3D64] text-[#F4F4F4]">
         {/* Headline */}
-        <h1 className="md:text-[1.3rem] text-center font-bold">
+        <h1 className="md:text-[1.3rem] text-center m-4 font-bold">
           <TypeAnimation
             sequence={[
               "Selamat Datang Di Mini Project Review App",
@@ -25,7 +25,7 @@ export default function OnBoardingPage() {
             repeat={Infinity}
           />
         </h1>
-        <div className="flex gap-7 md:mt-0 mt-7">
+        <div className="flex flex-col md:flex-col gap-7 md:mt-0 mt-10 mb-10">
           {/* Handphone Sector Card */}
           <Link href={"/handphone-sector"} className="bg-[#26476C] border border-[#2b507a] rounded-2xl p-5 flex items-center flex-col w-69 transition-transform duration-300 hover:scale-110 cursor-pointer">
             <div

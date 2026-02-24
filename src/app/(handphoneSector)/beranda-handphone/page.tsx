@@ -125,7 +125,7 @@ const [products, totalProducts] = await Promise.all([
                 <p className="text-xs text-gray-300 mb-1">ID: {product.productId}</p>
                 <h3 className="text-white font-medium mb-3">{product.produkName}</h3>
                 <a
-                  href={`/beranda/${product.productId}`}
+                  href={`/beranda-handphone/${product.productId}`}
                   className="inline-flex items-center justify-center bg-[#1D546C] hover:bg-[#163F52] text-white text-xs font-medium px-3 py-2 rounded-lg transition"
                 >
                   Review Produk

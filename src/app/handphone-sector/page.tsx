@@ -9,7 +9,7 @@ export default function OnBoardingPage() {
     <>
       <div className="flex flex-col items-center justify-center min-h-screen gap-6 bg-[#1A3D64] text-[#F4F4F4]">
         {/* Headline */}
-        <h1 className="md:text-[1.3rem] text-center font-bold">
+        <h1 className="md:text-[1.3rem] text-center font-bold mt-4">
           Selamat Datang Di{" "}
           <span className="text-[#00F7FF] font-extrabold">Handphone</span>{" "}
           Sector
@@ -23,7 +23,7 @@ export default function OnBoardingPage() {
             repeat={Infinity}
           />
         </h1>
-        <div className="grid grid-cols-2 gap-7 md:mt-0 mt-7">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-7 md:mt-0 mt-7">
           {/* Dashboard Card */}
           <Link
             href={"/login-admin"}

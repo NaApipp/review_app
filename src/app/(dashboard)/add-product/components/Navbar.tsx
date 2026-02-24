@@ -83,7 +83,7 @@ export default function Navbar() {
               <Link
                 href="/login-admin"
                 onClick={logout}
-                className="block py-2 px-3 bg-[#CF0F0F] hover:bg-[#CF0F0F]/60 text-white text-heading rounded hover:bg-neutral-tertiary  md:p-3"
+                className="block mt-4 py-2 px-3 bg-[#CF0F0F] hover:bg-[#CF0F0F]/60 text-white text-heading rounded hover:bg-neutral-tertiary  md:p-3"
               >
                 Logout
               </Link>

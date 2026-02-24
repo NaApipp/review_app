@@ -9,7 +9,7 @@ export default function OnBoardingPage() {
     <>
       <div className="flex flex-col items-center justify-center min-h-screen gap-6 bg-[#1A3E64] text-[#F4F4F4]">
         {/* Headline */}
-        <h1 className="md:text-[1.3rem] text-center font-bold">
+        <h1 className="md:text-[1.3rem] mt-10 text-center font-bold">
           Selamat Datang Di{" "}
           <span className="text-[#00F7FF] font-extrabold">Laptop</span> Sector
         </h1>
@@ -22,7 +22,7 @@ export default function OnBoardingPage() {
             repeat={Infinity}
           />
         </h1>
-        <div className="grid grid-cols-2 gap-7 md:mt-0 mt-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:mt-0 mt-7">
           {/* Reviwe Card */}
           <Link
             href={"/login-admin"}
