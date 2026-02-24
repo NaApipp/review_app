@@ -25,7 +25,7 @@ export default function OnBoardingPage() {
             repeat={Infinity}
           />
         </h1>
-        <div className="flex flex-col md:flex-col gap-7 md:mt-0 mt-10 mb-10">
+        <div className="flex flex-col md:flex-row gap-7 md:mt-0 mt-10 mb-10">
           {/* Handphone Sector Card */}
           <Link href={"/handphone-sector"} className="bg-[#26476C] border border-[#2b507a] rounded-2xl p-5 flex items-center flex-col w-69 transition-transform duration-300 hover:scale-110 cursor-pointer">
             <div
