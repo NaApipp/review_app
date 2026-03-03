@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Laptop, Shirt, Smartphone, ArrowRight } from "lucide-react";
+import { Laptop, Shirt, Smartphone, ArrowRight, Home } from "lucide-react";
 
 const datasets = [
   {
@@ -260,6 +260,7 @@ export default function DatasetPage() {
             );
           })}
         </div>
+        <Link href={"/on-boarding"} className="text-white bg-blue-500 px-5 py-3 rounded-lg flex items-center gap-2"><Home />Back to Home</Link>
       </div>
     </div>
   );
