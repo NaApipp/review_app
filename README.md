@@ -83,6 +83,17 @@ src/
  │   │       ├── comoponents/
  │   │       └── page.tsx             # Add Prouct From
  │   │
+ │   ├── (dataset)/
+ │   │   └── dataset/
+ │   │       ├── components/
+ │   │       |   └── ButtonBack.tsx   # Button Back
+ │   │       └── data-laptop/
+ │   │       |   └── page.tsx         # Dataset View (Fetch API for GET data)
+ │   │       └── data-handphone/
+ │   │       |   └── page.tsx         # Dataset View (Fetch API for GET data)
+ │   │       └── data-fashion/
+ │   │           └── page.tsx         # Dataset View (Fetch API for GET data)
+ │   │
  │   │
  │   ├── (Anotatorfashion)/
  │   │   └── label-review-fashion/
@@ -349,16 +360,19 @@ All processes run automatically in the background.
 
 ## API Universal / General
 
-| Endpoint                          | Method | Function                                                 |
-| --------------------------------- | ------ | -------------------------------------------------------- |
-| `/api/add-review/laptop`          | POST   | Add Review Data for anotator Laptop Sector               |
-| `/api/add-review/handphone`       | POST   | Add Review Data for anotator Handphone Sector            |
-| `/api/add-review/fashion`         | POST   | Add Review Data for anotator Fashion Sector              |
-| `/api/dashboard/product`          | POST   | Add Data product for user review Handphone Sector        |
-| `/api/dashboard/laptop`           | POST   | Add Data product for user review Handphone Sector        |
-| `/api/add-review-user2/laptop`    | POST   | Add Review Data for anotator user 2 Laptop Sector        |
-| `/api/add-review-user2/handphone` | POST   | Add Review Data for anotator user 2 Handphone Sector     |
-| `/api/add-review-user2/fashion`   | POST   | Add Review Data for anotator user 2 Fashion Sector       |
+| Endpoint                          | Method       | Function                                                 |
+| --------------------------------- | ------------ | -------------------------------------------------------- |
+| `/api/add-review/laptop`          | POST & GET   | Add Review Data for anotator Laptop Sector               |
+| `/api/add-review/handphone`       | POST & GET   | Add Review Data for anotator Handphone Sector            |
+| `/api/add-review/fashion`         | POST & GET   | Add Review Data for anotator Fashion Sector              |
+| `/api/dashboard/product`          | POST & GET   | Add Data product for user review Handphone Sector        |
+| `/api/dashboard/laptop`           | POST & GET   | Add Data product for user review Handphone Sector        |
+| `/api/add-review-user2/laptop`    | POST & GET   | Add Review Data for anotator user 2 Laptop Sector        |
+| `/api/add-review-user2/handphone` | POST & GET   | Add Review Data for anotator user 2 Handphone Sector     |
+| `/api/add-review-user2/fashion`   | POST & GET   | Add Review Data for anotator user 2 Fashion Sector       |
+| `/api/dataset/data-laptop`        | GET & POST   | Get & Add Dataset for dataset Laptop Sector              |
+| `/api/dataset/data-handphone`     | GET & POST   | Get & Add Dataset for dataset Handphone Sector           |
+| `/api/dataset/data-fashion`       | GET & POST   | Get & Add Dataset for dataset Fashion Sector             |   
 
 ---
 
